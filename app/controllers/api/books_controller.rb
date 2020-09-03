@@ -9,7 +9,6 @@ class Api::BooksController < ApplicationController
       end
     end
     @total = get_total()
-
     if @books
       respond_to do |format|
         format.json
@@ -43,7 +42,6 @@ class Api::BooksController < ApplicationController
       count += 1
     end
     double_array = [date_array, total_money]
-
     return double_array
   end
   

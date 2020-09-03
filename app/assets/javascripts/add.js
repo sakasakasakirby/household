@@ -1,9 +1,15 @@
 $(function()  {
 
   function buildHTML(num){
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = ("0"+(now.getMonth()+1)).slice(-2);
+    let day = ("0"+now.getDate()).slice(-2);
+    let today = year + "-" + month + "-" + day
+
     let html = '<div class="contents__content__add' + num + '__form">';
     html += '<form>';
-    html += '<input type="date" class="contents__content__add' + num + '__form__calendar" max="9999-12-31">';
+    html += '<input type="date" class="contents__content__add' + num + '__form__calendar" max="9999-12-31" value="' + today + '">';
     if(num == 4) {
       html += '追加内容:<input type="text" class="contents__content__add' + num + '__form__context" size="13" value="家賃" placeholder="追加したい項目">';
     } else if(num == 5) {
@@ -50,7 +56,7 @@ $(function()  {
     $('.contents__content__text' + data.item_id + '__info').append(html);
 
     html = '<div class="contents__content__text' + data.item_id + '__money__context">' + data.money + '円</div>';
-    html += '<div class="contents__content__text' + data.item_id + '__money__context contents__content__text' + data.item_id + '__money__sum">' + data.total + '円</div>';
+    html += '<div class="contents__content__text' + data.item_id + '__money__context contents__content__text' + data.item_id + '__money__sum">' + data.income + '円</div>';
     $('.contents__content__text' + data.item_id + '__money').append(html);
 
     $('.contents__content__text' + data.item_id).animate({ scrollTop: $('.contents__content__text' + data.item_id)[0].scrollHeight})
@@ -94,7 +100,7 @@ $(function()  {
 
   function addIncomeHTML(data){
     let id = data.item_id;
-    let total = data.total + "円";
+    let total = data.income + "円";
     $('.contents__content__text6__money__context').eq(5-id).text(total);
 
     let income = 0;
@@ -112,7 +118,25 @@ $(function()  {
     }
     let income_str = income + "円";
     $('.contents__content__text6__money__context').eq(5).text(income_str);
-    
+  }
+
+  function addTotal(array){
+    $('.contents__content__text7__info__context').remove();
+    let html = "";
+    for(i = 0; i < array[0].length; i++){
+      html += '<div class="contents__content__text7__info__context">' + array[0][i] + 'の収支</div>';
+    }
+    html += '<div class="contents__content__text7__info__context contents__content__text7__info__sum">total</div>';
+    $('.contents__content__text7__info').append(html);
+    $('.contents__content__text7__money__context').remove();
+    let total_money = 0;
+    html = "";
+    for(i = 0; i < array[1].length; i++){
+      html += '<div class="contents__content__text7__money__context">' + array[1][i] + '円</div>';
+      total_money += array[1][i]
+    }
+    html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money + '円</div>';
+    $('.contents__content__text7__money').append(html);
   }
 
   //中止ボタン押された際の処理
@@ -160,6 +184,7 @@ $(function()  {
         addHTML(data);
         addIncomeHTML(data);
       }
+      addTotal(data.total_array);
       
     })
     .fail(function(){
