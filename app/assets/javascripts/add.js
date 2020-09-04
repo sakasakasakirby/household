@@ -1,4 +1,4 @@
-$(function()  {
+$(function() {
 
   function buildHTML(num){
     let now = new Date();
@@ -27,6 +27,7 @@ $(function()  {
 
   function returnHTML(num) {
     let html = '<a class="contents__content__add' + num + '__button" href="#">追加</a>';
+    html += '<a class="contents__content__add' + num + '__delete" href="#">削除</a>';
     return html;
   }
 
@@ -65,6 +66,7 @@ $(function()  {
 
   function addProcess(num){
     $('.contents__content__add' + num + '__button').remove();
+    $('.contents__content__add' + num + '__delete').remove();
     let html = buildHTML(num);
     $('.contents__content__add' + num).append(html);
   }
@@ -193,6 +195,14 @@ $(function()  {
   }
 
   //決定ボタン押された際の処理
+  /*
+  for(i = 1; i <= 5; i++){
+    $('.contents__content__add' + i).on('click', '.contents__content__add' + i + '__form__button-y', function(e){
+      e.preventDefault();
+      decisionProcess(i);
+    })
+  }
+  */
   $('.contents__content__add1').on('click', '.contents__content__add1__form__button-y', function(e){
     e.preventDefault();
     decisionProcess(1);

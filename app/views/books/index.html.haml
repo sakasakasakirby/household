@@ -8,8 +8,9 @@
 .container
 
   = form_with url: "#", class: "select", local: true do |f|
-    = f.select :select_month, [["2020年", 2020],["2019年", 2019]], {}, {class: 'select__year'}
+    = f.select :select_year, [], {}, {class: 'select__year'}
     = f.select :select_month, [["1月", 1],["2月", 2],["3月", 3],["4月", 4],["5月", 5],["6月", 6],["7月", 7],["8月", 8],["9月", 9],["10月", 10],["11月", 11],["12月", 12]], {}, {class: 'select__month'}
+    = link_to "統計グラフ", book_path(@user_id), class: "graph-button"
 
   %ul.container__menu
     %li= link_to "生活費", "#", class: "container__menu__item active"
@@ -19,101 +20,72 @@
     %li= link_to "収入", "#", class: "container__menu__item income"
     %li= link_to "今月の収支", "#", class: "container__menu__item month"
     %li= link_to "TOTAL", "#", class: "container__menu__item total last-item"
-
+    
   %ul.contents
-    %li.contents__content.show
-      .contents__content__text1
-        .contents__content__text1__date
-          .contents__content__text1__date__context.contents__content__text1__date__sum
-        .contents__content__text1__info
-          .contents__content__text1__info__context.contents__content__text1__info__sum
-            total
-        .contents__content__text1__money
-          .contents__content__text1__money__context.contents__content__text1__money__sum
-            0円
-      .contents__content__add1
-        = link_to "追加", "#", class: "contents__content__add1__button"
+    - @item_num.each do |num|
+      -if num.id > 1
+        %li.contents__content
+          %div{class: "contents__content__text#{num.id}"}
+            %div{class: "contents__content__text#{num.id}__date"}
+              %div{class: "contents__content__text#{num.id}__date__context contents__content__text#{num.id}__date__sum"}
+            %div{class: "contents__content__text#{num.id}__info"}
+              %div{class: "contents__content__text#{num.id}__info__context contents__content__text#{num.id}__info__sum"}
+                total
+            %div{class: "contents__content__text#{num.id}__money"}
+              %div{class: "contents__content__text#{num.id}__money__context contents__content__text#{num.id}__money__sum"}
+                0円
+          %div{class: "contents__content__add#{num.id}"}
+            = link_to "追加", "#", class: "contents__content__add#{num.id}__button"
+            = link_to "削除", "#", class: "contents__content__add#{num.id}__delete"
+      -else
+        %li.contents__content.show
+          %div{class: "contents__content__text#{num.id}"}
+            %div{class: "contents__content__text#{num.id}__date"}
+              %div{class: "contents__content__text#{num.id}__date__context contents__content__text#{num.id}__date__sum"}
+            %div{class: "contents__content__text#{num.id}__info"}
+              %div{class: "contents__content__text#{num.id}__info__context contents__content__text#{num.id}__info__sum"}
+                total
+            %div{class: "contents__content__text#{num.id}__money"}
+              %div{class: "contents__content__text#{num.id}__money__context contents__content__text#{num.id}__money__sum"}
+                0円
+          %div{class: "contents__content__add#{num.id}"}
+            = link_to "追加", "#", class: "contents__content__add#{num.id}__button"
+            = link_to "削除", "#", class: "contents__content__add#{num.id}__delete"
 
     %li.contents__content
-      .contents__content__text2
-        .contents__content__text2__date
-          .contents__content__text2__date__context.contents__content__text2__date__sum
-        .contents__content__text2__info
-          .contents__content__text2__info__context.contents__content__text2__info__sum
-            total
-        .contents__content__text2__money
-          .contents__content__text2__money__context.contents__content__text2__money__sum
-            0円
-      .contents__content__add2
-        = link_to "追加", "#", class: "contents__content__add2__button"
-
-    %li.contents__content
-      .contents__content__text3
-        .contents__content__text3__info
-          .contents__content__text3__info__context.contents__content__text3__info__sum
-            total
-        .contents__content__text3__money
-          .contents__content__text3__money__context.contents__content__text3__money__sum
-            0円
-      .contents__content__add3
-        = link_to "追加", "#", class: "contents__content__add3__button"
-
-    %li.contents__content
-      .contents__content__text4
-        .contents__content__text4__info
-          .contents__content__text4__info__context.contents__content__text4__info__sum
-            total
-        .contents__content__text4__money
-          .contents__content__text4__money__context.contents__content__text4__money__sum
-            0円
-      .contents__content__add4
-        = link_to "追加", "#", class: "contents__content__add4__button"
-
-    %li.contents__content
-      .contents__content__text5
-        .contents__content__text5__info
-          .contents__content__text5__info__context.contents__content__text5__info__sum
-            total
-        .contents__content__text5__money
-          .contents__content__text5__money__context.contents__content__text5__money__sum
-            0円
-      .contents__content__add5
-        = link_to "追加", "#", class: "contents__content__add5__button"
-
-    %li.contents__content
-      .contents__content__text6
-        .contents__content__text6__info
-          .contents__content__text6__info__context.plus
+      %div{class: "contents__content__text#{@item_num.length+1}"}
+        %div{class: "contents__content__text#{@item_num.length+1}__info"}
+          %div{class: "contents__content__text#{@item_num.length+1}__info__context plus"}
             収入
-          .contents__content__text6__info__context.minus
+          %div{class: "contents__content__text#{@item_num.length+1}__info__context minus"}
             家賃
-          .contents__content__text6__info__context.minus
+          %div{class: "contents__content__text#{@item_num.length+1}__info__context minus"}
             光熱費など
-          .contents__content__text6__info__context.minus
+          %div{class: "contents__content__text#{@item_num.length+1}__info__context minus"}
             その他
-          .contents__content__text6__info__context.minus
+          %div{class: "contents__content__text#{@item_num.length+1}__info__context minus"}
             生活費
-          .contents__content__text6__info__context.contents__content__text6__info__sum
+          %div{class: "contents__content__text#{@item_num.length+1}__info__context contents__content__text#{@item_num.length+1}__info__sum"}
             収支
         .contents__content__text6__money
-          .contents__content__text6__money__context.plus
+          %div{class: "contents__content__text#{@item_num.length+1}__money__context plus"}
             0円
-          .contents__content__text6__money__context.minus
+          %div{class: "contents__content__text#{@item_num.length+1}__money__context minus"}
             0円
-          .contents__content__text6__money__context.minus
+          %div{class: "contents__content__text#{@item_num.length+1}__money__context minus"}
             0円
-          .contents__content__text6__money__context.minus
+          %div{class: "contents__content__text#{@item_num.length+1}__money__context minus"}
             0円
-          .contents__content__text6__money__context.minus
+          %div{class: "contents__content__text#{@item_num.length+1}__money__context minus"}
             0円
-          .contents__content__text6__money__context.contents__content__text6__money__sum
+          %div{class: "contents__content__text#{@item_num.length+1}__money__context contents__content__text#{@item_num.length+1}__money__sum"}
             0円
 
     %li.contents__content
-      .contents__content__text7
-        .contents__content__text7__info
-          .contents__content__text7__info__context.contents__content__text7__info__sum
+      %div{class: "contents__content__text#{@item_num.length+2}"}
+        %div{class: "contents__content__text#{@item_num.length+2}__info"}
+          %div{class: "contents__content__text#{@item_num.length+2}__info__context contents__content__text#{@item_num.length+2}__info__sum"}
             total
-        .contents__content__text7__money
-          .contents__content__text7__money__context.contents__content__text7__money__sum
+        %div{class: "contents__content__text#{@item_num.length+2}__money"}
+          %div{class: "contents__content__text#{@item_num.length+2}__money__context contents__content__text#{@item_num.length+2}__money__sum"}
             0円

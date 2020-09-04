@@ -1,15 +1,10 @@
 class Api::BooksController < ApplicationController
+  
   def index
     @books = Book.where("date LIKE ?", "%#{params[:date]}%").order(date: "ASC")
-    @money = [0, 0, 0, 0, 0]
-    5.times do |i|
-      total = Book.where(item_id: i+1).where("date LIKE ?", "%#{params[:date]}%")
-      total.each do |t|
-        @money[i] += t.money
-      end
-    end
-    @total = get_total()
     if @books
+      @money = get_income()
+      @total = get_total()
       respond_to do |format|
         format.json
       end
@@ -18,6 +13,17 @@ class Api::BooksController < ApplicationController
 
 
   private
+
+  def get_income()
+    money = [0, 0, 0, 0, 0]
+    5.times do |i|
+      total = Book.where(item_id: i+1).where("date LIKE ?", "%#{params[:date]}%")
+      total.each do |t|
+        money[i] += t.money
+      end
+    end
+    return money
+  end
 
   def get_total()
     date_count = Book.select(:date).distinct

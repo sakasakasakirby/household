@@ -1,6 +1,8 @@
 class BooksController < ApplicationController
 
   def index
+    @item_num = Item.select("id")
+    @user_id = 1
   end
 
   def create

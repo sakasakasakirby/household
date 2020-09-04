@@ -3,6 +3,9 @@ $(document).ready( function(){
   let now = new Date();
   let year = now.getFullYear();
   let month = now.getMonth()+1;
+
+  addSelectBox(year);
+
   $('.select__year').val(year);
   $('.select__month').val(month);
   month = "" + $('.select__month').val();
@@ -89,6 +92,14 @@ $(document).ready( function(){
     }
     html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money + '円</div>';
     $('.contents__content__text7__money').append(html);
+  }
+
+  function addSelectBox(year){
+    for(i = 0; i < 10; i++){
+      y = year - i;
+      dis = y + "年"
+      $('#select_year').append($('<option>').html(dis).val(y));
+    }
   }
 
 });

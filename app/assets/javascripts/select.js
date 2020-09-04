@@ -1,6 +1,6 @@
 $(function() {
 
-  $('.select__month').on('change', function(e){
+  $('.select__month, .select__year').on('change', function(e){
     month = "" + $('.select__month').val();
     if(month.length == 1){
       month = "0" + month;

@@ -54,6 +54,17 @@ h1:before {
       font-size :25px;
       margin: 0px 0px 5px 0px;
     }
+    .graph-button{
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      border: medium solid black;
+      border-radius: 10px 10px 10px 10px;
+      background-color: #dddddd;
+      padding: 3px 10px;
+      margin: 0px 0px 5px 0px;
+      float: right;
+    }
   }
 
   &__menu {
@@ -185,14 +196,16 @@ h1:before {
         margin: 20px 0px 0px 0px;
         text-align: right;
         min-width: 800px;
-        &__button {
+        display: flex;
+        justify-content: flex-end;
+        &__button, &__delete {
           color: black;
           text-decoration: none;
           border: medium solid black;
           border-radius: 10px 10px 10px 10px;
           background-color: #dddddd;
-          padding: 5px 10px;
-          margin: 0px 20px;
+          padding: 0px 10px;
+          margin: -3px 20px 0px 0px;
         }
         &__form {
           margin: -3px 0px -3px 0px;
