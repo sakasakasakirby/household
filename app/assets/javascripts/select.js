@@ -6,10 +6,12 @@ $(function() {
       month = "0" + month;
     }
     let date = $('.select__year').val() + "-" + month;
+    let c = $(".user").attr("class");
+    let user_id = c[c.length-1];
     $.ajax({
       url: '/api/books',
       type: 'GET',
-      data: {date: date},  
+      data: {date: date, user_id: user_id},  
       dataType: 'json'
     })
     .done(function(data){

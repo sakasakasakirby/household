@@ -168,10 +168,12 @@ $(function() {
     let name = $('.contents__content__add' + num + '__form__context').val();
     let money = $('.contents__content__add' + num + '__form__money').val();
     let date = $('.contents__content__add' + num + '__form__calendar').val();
+    let c = $(".user").attr("class");
+    let user_id = c[c.length-1];
     $.ajax({
       url: '/books',
       type: 'POST',
-      data: {name: name, money: money, date: date, item_id: num},
+      data: {name: name, money: money, date: date, item_id: num, user_id: user_id},
       dataType: 'json'
     })
     .done(function(data){

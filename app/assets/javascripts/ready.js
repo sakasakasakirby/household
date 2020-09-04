@@ -1,37 +1,45 @@
 $(document).ready( function(){
 
-  let now = new Date();
-  let year = now.getFullYear();
-  let month = now.getMonth()+1;
+  var url = location.href;
+  if(url.slice(url.length-1, url.length) === "/" || url.slice(url.length-1, url.length) === "#"){
+    
+    let now = new Date();
+    let year = now.getFullYear();
+    let month = now.getMonth()+1;
 
-  addSelectBox(year);
+    addSelectBox(year);
 
-  $('.select__year').val(year);
-  $('.select__month').val(month);
-  month = "" + $('.select__month').val();
-  if(month.length == 1){
-    month = "0" + month;
+    $('.select__year').val(year);
+    $('.select__month').val(month);
+    month = "" + $('.select__month').val();
+    if(month.length == 1){
+      month = "0" + month;
+    }
+    let date = $('.select__year').val() + "-" + month;
+
+    let c = $(".user").attr("class");
+    user_id = c[c.length-1];
+    
+    $.ajax({
+      url: '/api/books',
+      type: 'GET',
+      data: {date: date, user_id: user_id},  
+      dataType: 'json'
+    })
+    .done(function(data){
+      for(i = 0; i < data.length ; i++){
+        addHTML(data[i]);
+      }
+      if(data.length > 0){
+        addIncome(data[0].total_array);
+        addTotal(data[0].double_array);
+      }
+    })
+    .fail(function(){
+      alert('DBへの接続に失敗しました');
+    })
+
   }
-  let date = $('.select__year').val() + "-" + month;
-  
-  $.ajax({
-    url: '/api/books',
-    type: 'GET',
-    data: {date: date},  
-    dataType: 'json'
-  })
-  .done(function(data){
-    for(i = 0; i < data.length ; i++){
-      addHTML(data[i]);
-    }
-    if(data.length > 0){
-      addIncome(data[0].total_array);
-      addTotal(data[0].double_array);
-    }
-  })
-  .fail(function(){
-    alert('DBへの接続に失敗しました');
-  })
 
   function addHTML(data){
     $('.contents__content__text' + data.item_id + '__date__sum').remove();

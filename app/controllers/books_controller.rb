@@ -1,8 +1,9 @@
 class BooksController < ApplicationController
 
   def index
+    @user_id = current_user.id
     @item_num = Item.select("id")
-    @user_id = 1
+    
   end
 
   def create
@@ -22,7 +23,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.permit(:name, :money, :date, :item_id)
+    params.permit(:name, :money, :date, :item_id).merge(user_id: current_user.id)
   end
 
   def name_permit
@@ -39,7 +40,7 @@ class BooksController < ApplicationController
 
   def income_calc
     date = params[:date].slice(0..6)
-    get_money = Book.where(item_id: params[:item_id]).where("date LIKE ?", "%#{date}%")
+    get_money = Book.where(user_id: params[:user_id]).where(item_id: params[:item_id]).where("date LIKE ?", "%#{date}%")
     income = 0
     get_money.each do |t|
       income += t.money
@@ -48,7 +49,7 @@ class BooksController < ApplicationController
   end
 
   def get_total()
-    date_count = Book.select(:date).distinct
+    date_count = Book.where(user_id: params[:user_id]).select(:date).distinct
     date_array = []
     date_count.each do |t|
       date_array.push(t[:date].slice(0, 7))
@@ -59,11 +60,11 @@ class BooksController < ApplicationController
     count = 0
     date_array.each do |str|
       total_money[count] = 0
-      money_db = Book.where("date LIKE ?", "%#{str}%").where(item_id: 5).select(:money)
+      money_db = Book.where(user_id: params[:user_id]).where("date LIKE ?", "%#{str}%").where(item_id: 5).select(:money)
       money_db.each do |m|
         total_money[count] += m[:money]
       end
-      money_db = Book.where("date LIKE ?", "%#{str}%").where.not(item_id: 5).select(:money)
+      money_db = Book.where(user_id: params[:user_id]).where("date LIKE ?", "%#{str}%").where.not(item_id: 5).select(:money)
       money_db.each do |m|
         total_money[count] -= m[:money]
       end
