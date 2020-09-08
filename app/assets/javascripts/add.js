@@ -169,7 +169,8 @@ $(function() {
     let money = $('.contents__content__add' + num + '__form__money').val();
     let date = $('.contents__content__add' + num + '__form__calendar').val();
     let c = $(".user").attr("class");
-    let user_id = c[c.length-1];
+    let user_id = c.slice(9);
+
     $.ajax({
       url: '/books',
       type: 'POST',

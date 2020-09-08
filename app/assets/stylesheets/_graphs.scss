@@ -1,0 +1,32 @@
+.display {
+  .button {
+    display: flex;
+    justify-content: flex-end;
+    .graph-button, .user{
+      font-size: 20px;
+      color: black;
+      text-decoration: none;
+      border: medium solid black;
+      border-radius: 10px 10px 10px 10px;
+      background-color: #dddddd;
+      padding: 3px 10px;
+      margin: 40px 120px 10px 0px;
+    }
+  }
+  .graph {
+    height: calc(100vh-50px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto, 0px;
+    &__line {
+      color: black;
+      background-color:rgba(255,255,255,0.5);
+      padding: 20px;
+      #chart {
+        color: black;
+      }
+    }
+  }
+}
+

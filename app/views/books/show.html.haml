@@ -1,1 +1,47 @@
-ああああああああ
+.display
+  .button
+    = link_to "家計簿記入画面", root_path, class: "graph-button"
+  .graph
+    .graph__line
+      //= line_chart @data, id: "chart", width: "900px", height: "600px", xtitle: "Month", ytitle: "BOP(balance of payments)" , messages: {empty: "No data"}
+      %canvas(id="myChart" width="1000" height="600")
+
+      :javascript
+        array = [];
+        y = #{@label[0]};
+        m = #{@label[1]};
+        for(i = 0; i < y.length; i++){
+          str = y[i] + "-" + m[i];
+          array.push(str);
+        }
+
+        var ctx = document.getElementById("myChart");
+        var myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: array, //#{@label}
+            datasets: [{
+              label: '収入',
+              backgroundColor: "rgba(255,255,0,0.6)",
+              borderColor: "rgba(0,0,0,1)",
+              data: #{@income}
+            }, {
+              label: '支出',
+              backgroundColor: "rgba(34,255,255,0.6)",
+              borderColor: "rgba(0,0,0,1)",
+              data: #{@expense}
+            }, {
+              type: 'line',
+              fill: false,
+              //lineTension: 0,
+              label: '収支',
+              backgroundColor: "rgba(0,255,0,0.6)",
+              borderColor: "rgba(0,255,0,0.4)",
+              data: #{@total}
+            }]
+          },
+          options: complexChartOption
+        });
+        var complexChartOption = {
+          responsive: true
+        };

@@ -1,6 +1,6 @@
 $(document).ready( function(){
 
-  var url = location.href;
+  let url = location.href;
   if(url.slice(url.length-1, url.length) === "/" || url.slice(url.length-1, url.length) === "#"){
     
     let now = new Date();
@@ -18,8 +18,7 @@ $(document).ready( function(){
     let date = $('.select__year').val() + "-" + month;
 
     let c = $(".user").attr("class");
-    user_id = c[c.length-1];
-    
+    let user_id = c.slice(9);
     $.ajax({
       url: '/api/books',
       type: 'GET',

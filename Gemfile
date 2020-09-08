@@ -57,3 +57,8 @@ gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'jquery-rails'
 gem 'pry-rails'
 gem 'devise'
+
+gem 'chartkick'
+# gem 'lazy_high_charts'
+gem 'chart-js-rails', '~> 0.1.4'
+gem 'bootsnap', '>= 1.4.2', require: false

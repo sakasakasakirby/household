@@ -7,7 +7,7 @@ $(function() {
     }
     let date = $('.select__year').val() + "-" + month;
     let c = $(".user").attr("class");
-    let user_id = c[c.length-1];
+    let user_id = c.slice(9);
     $.ajax({
       url: '/api/books',
       type: 'GET',

@@ -11,7 +11,7 @@
     = f.select :select_year, [], {}, {class: 'select__year'}
     = f.select :select_month, [["1月", 1],["2月", 2],["3月", 3],["4月", 4],["5月", 5],["6月", 6],["7月", 7],["8月", 8],["9月", 9],["10月", 10],["11月", 11],["12月", 12]], {}, {class: 'select__month'}
     = link_to "ユーザ管理画面", edit_user_path(current_user), class: "user user#{current_user.id}"
-    = link_to "統計グラフ", book_path(@user_id), class: "graph-button"
+    = link_to "収支グラフ", book_path(@user_id), class: "graph-button"
 
 
   %ul.container__menu
