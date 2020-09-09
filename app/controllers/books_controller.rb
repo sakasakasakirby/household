@@ -10,8 +10,19 @@ class BooksController < ApplicationController
     name_permit()
     money_permit()
     if @book.save
-      @income = income_calc()
-      @total = get_total()
+      @income = income_create(params[:user_id], params[:item_id])
+      @total = get_total(params[:user_id])
+      respond_to do |format|
+        format.json
+      end
+    end
+  end
+
+  def destroy
+    delete_record(params[:array], params[:id], params[:item_id])
+    if @deleted_book
+      @income = income_delete(params[:id], params[:item_id])
+      @total = get_total(params[:id])
       respond_to do |format|
         format.json
       end
@@ -19,13 +30,14 @@ class BooksController < ApplicationController
   end
 
   def show
-    @total = get_total_graph()
-    @income = get_income_graph()
-    @expense = get_expense_graph()
+    @total = get_total_graph(params[:id])
     if @total.length != 0
       @average = get_average_graph(@total)
+      @stack_total = get_stack_graph(@total)
     end
-    @label = get_date_graph()
+    @income = get_income_graph(params[:id])
+    @expense = get_expense_graph(params[:id])
+    @label = get_label_graph(params[:id])
     #label = get_income_graph()[0]
     #@label = label.join(',')
     #binding.pry
@@ -50,9 +62,17 @@ class BooksController < ApplicationController
     end
   end
 
-  def income_calc
-    date = params[:date].slice(0..6)
-    get_money = Book.where(user_id: params[:user_id]).where(item_id: params[:item_id]).where("date LIKE ?", "%#{date}%")
+  def delete_record(params_array, user_id, item_id)
+    params_array.each do |array|
+      book = Book.where(user_id: user_id).where(item_id: item_id).where("date LIKE ?", "%#{array[1][0]}%").where(name: array[1][1]).where(money: array[1][2])
+      book.length.times do |i|
+        @deleted_book = Book.find(book[i][:id]).delete
+      end
+    end
+  end
+
+  def income_calc(user_id, item_id, date)
+    get_money = Book.where(user_id: user_id).where(item_id: item_id).where("date LIKE ?", "%#{date}%")
     income = 0
     get_money.each do |t|
       income += t.money
@@ -60,30 +80,72 @@ class BooksController < ApplicationController
     return income
   end
 
-  def get_total()
-    date_count = Book.where(user_id: params[:user_id]).select(:date).distinct
+  def income_create(user_id, item_id)
+    date = params[:date].slice(0..6)
+    return income_calc(user_id, item_id, date)
+  end
+
+  def income_delete(user_id, item_id)
+    date = params[:array][:"0"][0]
+    if params[:id].to_i <= 2
+      date = date.slice(0..6)
+    end
+    return income_calc(user_id, item_id, date)
+  end
+
+  def get_total(id)
+    date_array = get_date(id)
+    total_money = total_calc(id, date_array)
+    return [date_array, total_money]
+  end
+
+  def get_date(id)
+    date_count = Book.where(user_id: id).select(:date).distinct
     date_array = []
     date_count.each do |t|
       date_array.push(t[:date].slice(0, 7))
     end
     date_array = date_array.uniq
     date_array = date_array.sort
+    return date_array
+  end
+
+  def total_calc(id, date_array)
     total_money = Array.new(date_array.length)
     count = 0
     date_array.each do |str|
       total_money[count] = 0
-      money_db = Book.where(user_id: params[:user_id]).where("date LIKE ?", "%#{str}%").where(item_id: 5).select(:money)
+      money_db = Book.where(user_id: id).where("date LIKE ?", "%#{str}%").where(item_id: 5).select(:money)
       money_db.each do |m|
         total_money[count] += m[:money]
       end
-      money_db = Book.where(user_id: params[:user_id]).where("date LIKE ?", "%#{str}%").where.not(item_id: 5).select(:money)
+      money_db = Book.where(user_id: id).where("date LIKE ?", "%#{str}%").where.not(item_id: 5).select(:money)
       money_db.each do |m|
         total_money[count] -= m[:money]
       end
       count += 1
     end
-    double_array = [date_array, total_money]
-    return double_array
+    return total_money
+  end
+
+
+  #show
+  def get_label_graph(id)
+    return get_year_month(get_date(id))
+  end
+
+  def get_year_month(date_array)
+    year_array = []
+    month_array = []
+    date_array.each do |t|
+      year_array.push(t.slice(0, 4).to_i)
+      month_array.push(t.slice(5, 7).to_i)
+    end
+    return [year_array, month_array]
+  end
+
+  def get_total_graph(id)
+    return total_calc(id, get_date(id))
   end
 
   def get_average_graph(array)
@@ -94,44 +156,38 @@ class BooksController < ApplicationController
     return average/array.length
   end
 
-  def get_total_graph()
-    date_count = Book.where(user_id: params[:id]).select(:date).distinct
-    date_array = []
-    date_count.each do |t|
-      date_array.push(t[:date].slice(0, 7))
-    end
-    date_array = date_array.uniq
-    date_array = date_array.sort
-    total_money = Array.new(date_array.length)
+  def get_stack_graph(array)
+    stack_array = []
     count = 0
-    date_array.each do |str|
-      total_money[count] = 0
-      money_db = Book.where(user_id: params[:id]).where("date LIKE ?", "%#{str}%").where(item_id: 5).select(:money)
-      money_db.each do |m|
-        total_money[count] += m[:money]
+    array.each do |money|
+      if count == 0
+        stack_array.push(money)
+      else
+        stack_array.push(stack_array[count-1] + money)
       end
-      money_db = Book.where(user_id: params[:id]).where("date LIKE ?", "%#{str}%").where.not(item_id: 5).select(:money)
-      money_db.each do |m|
-        total_money[count] -= m[:money]
-      end
-      count += 1
+      count += 1 
     end
-    return total_money
+    return stack_array
   end
 
-  def get_income_graph()
-    date_count = Book.where(user_id: params[:id]).select(:date).distinct
-    date_array = []
-    date_count.each do |t|
-      date_array.push(t[:date].slice(0, 7))
-    end
-    date_array = date_array.uniq
-    date_array = date_array.sort
+  def get_income_graph(id)
+    return calc_income_expense(id, get_date(id), "income")
+  end
+
+  def get_expense_graph(id)
+    return calc_income_expense(id, get_date(id), "expense")
+  end
+
+  def calc_income_expense(id, date_array, name)
     total_money = Array.new(date_array.length)
     count = 0
     date_array.each do |str|
       total_money[count] = 0
-      money_db = Book.where(user_id: params[:id]).where("date LIKE ?", "%#{str}%").where(item_id: 5).select(:money)
+      if name == "income"
+        money_db = Book.where(user_id: id).where("date LIKE ?", "%#{str}%").where(item_id: 5).select(:money)
+      elsif name == "expense"
+        money_db = Book.where(user_id: id).where("date LIKE ?", "%#{str}%").where.not(item_id: 5).select(:money)
+      end
       money_db.each do |m|
         total_money[count] += m[:money]
       end
@@ -140,54 +196,5 @@ class BooksController < ApplicationController
     return total_money
   end
 
-  def get_expense_graph()
-    date_count = Book.where(user_id: params[:id]).select(:date).distinct
-    date_array = []
-    date_count.each do |t|
-      date_array.push(t[:date].slice(0, 7))
-    end
-    date_array = date_array.uniq
-    date_array = date_array.sort
-    total_money = Array.new(date_array.length)
-    count = 0
-    date_array.each do |str|
-      total_money[count] = 0
-      money_db = Book.where(user_id: params[:id]).where("date LIKE ?", "%#{str}%").where.not(item_id: 5).select(:money)
-      money_db.each do |m|
-        total_money[count] += m[:money]
-      end
-      count += 1
-    end
-    return total_money
-  end
-
-  def get_date_graph()
-    date_count = Book.where(user_id: params[:id]).select(:date).distinct
-    date_array = []
-    date_count.each do |t|
-      date_array.push(t[:date].slice(0, 7))
-    end
-    date_array = date_array.uniq
-    date_array = date_array.sort
-    year_array = []
-    month_array = []
-    date_array.each do |t|
-      year_array.push(t.slice(0, 4).to_i)
-      month_array.push(t.slice(5, 7).to_i)
-    end
-    double_array = [year_array, month_array]
-    return double_array
-  end
-
-  def graph_data(array)
-    data_array = []
-    array[0].length.times do |c|
-      a = []
-      a[0] = array[0][c]
-      a.push(array[1][c])
-      data_array.push(a)
-    end
-    return data_array
-  end
 
 end
