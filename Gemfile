@@ -62,3 +62,6 @@ gem 'chartkick'
 # gem 'lazy_high_charts'
 gem 'chart-js-rails', '~> 0.1.4'
 gem 'bootsnap', '>= 1.4.2', require: false
+
+gem 'fog-aws'
+gem 'font-awesome-sass'

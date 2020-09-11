@@ -1,32 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
+
 .display {
-  .button {
-    display: flex;
-    justify-content: flex-end;
-    .graph-button, .user{
-      font-size: 20px;
-      color: black;
-      text-decoration: none;
-      border: medium solid black;
-      border-radius: 10px 10px 10px 10px;
-      background-color: #dddddd;
-      padding: 3px 10px;
-      margin: 40px 120px 10px 0px;
-    }
-  }
+  height: 100vh;
+  width: 100vw;
+  background-image: url(wood-texture_00007.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .graph {
-    height: calc(100vh-50px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto, 0px;
-    &__line {
-      color: black;
-      background-color:rgba(255,255,255,0.5);
-      padding: 20px;
-      #chart {
-        color: black;
+    width: 1190px;
+    &__back {
+      background-image: url(clipboard_red1.png);
+      background-repeat: no-repeat;
+      background-size: contain;
+      &__line {
+        padding: 50px 50px 50px 138px;
+        .canvas {
+          background-color:rgba(255,255,255,0.5);
+        }
+        .button {
+          display: flex;
+          justify-content: end;
+          .graph-button {
+            font-size: 25px;
+            color: black;
+            font-family: 'Noto Serif JP', sans-serif;
+            text-decoration: none;
+            background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #333333 100%);
+            margin-left: 800px;
+          }
+        }
       }
     }
   }
+
+  
+  
 }
 

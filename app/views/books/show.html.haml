@@ -1,10 +1,12 @@
 .display
-  .button
-    = link_to "家計簿記入画面", root_path, class: "graph-button"
   .graph
-    .graph__line
-      //= line_chart @data, id: "chart", width: "900px", height: "600px", xtitle: "Month", ytitle: "BOP(balance of payments)" , messages: {empty: "No data"}
-      %canvas(id="myChart" width="1000" height="600")
+    .graph__back
+      .graph__back__line
+        //= line_chart @data, id: "chart", width: "900px", height: "600px", xtitle: "Month", ytitle: "BOP(balance of payments)" , messages: {empty: "No data"}
+        %canvas(id="myChart" class="canvas")
+        .button
+          = link_to "家計簿入力に戻る", root_path, class: "graph-button"
+
 
       :javascript
         array = [];
@@ -15,11 +17,14 @@
           array.push(str);
         }
 
+        var complexChartOption = {
+          responsive: true,
+        };
         var ctx = document.getElementById("myChart");
         var myChart = new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: array, //#{@label}
+            labels: array,
             datasets: [{
               label: '収入',
               backgroundColor: "rgba(255,255,0,0.6)",
@@ -29,20 +34,20 @@
               label: '支出',
               backgroundColor: "rgba(34,255,255,0.6)",
               borderColor: "rgba(34,255,255,0.6)",
+              //yAxisID: "y1",
               data: #{@expense}
             }, {
               type: 'line',
               fill: false,
-              //lineTension: 0,
               label: '収支',
               backgroundColor: "rgba(0,255,0,0.6)",
-              borderColor: "rgba(0,255,0,0.4)",
+              borderColor: "rgba(0,150,0,0.6)",
               data: #{@total}
             }, {
               type: 'line',
               fill: false,
               lineTension: 0,
-              label: '預金',
+              label: '貯金額',
               backgroundColor: "rgba(255,0,255,0.6)",
               borderColor: "rgba(255,0,255,0.4)",
               data: #{@stack_total}
@@ -50,6 +55,3 @@
           },
           options: complexChartOption
         });
-        var complexChartOption = {
-          responsive: true
-        };

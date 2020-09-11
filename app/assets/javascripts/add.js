@@ -4,9 +4,12 @@ $(function() {
   function createFormHTML(num){
     let now = new Date();
     let year = $('.select__year').val();
-    let month = "0" + $('.select__month').val();
+    let month = $('.select__month').val()
+    if(month.length == 1){
+      month = "0" + month;
+    }
     let day = ("0"+now.getDate()).slice(-2);
-    let today = year + "-" + month + "-" + day
+    let today = year + "-" + month + "-" + day;
     let html = '<div class="contents__content__add' + num + '__form">';
     html += '<form>';
     html += '<input type="date" class="contents__content__add' + num + '__form__calendar" max="9999-12-31" value="' + today + '">';
@@ -98,6 +101,31 @@ $(function() {
     $('.contents__content__text7__money').append(html);
   }
 
+  function addUserInfoHTML(double_array){
+    let m = $('.select__month').val();
+    let date = "";
+    if(m.length == 1){
+      date = $('.select__year').val() + "-0" + m;
+    } else {
+      date = $('.select__year').val() + "-" + m;
+    }
+    let income = 0;
+    let total = 0;
+    for(i = 0; i < double_array[0].length; i++){
+      if(double_array[0][i] === date){
+        income = double_array[1][i];
+      }
+      total += double_array[1][i];
+    }
+    //仮設定
+    target = 1000000;
+    remaining = target - total;
+    $('.user-management__display__info__context__right__income').text(income + "円");
+    $('.user-management__display__info__context__right__total').text(total + "円");
+    $('.user-management__display__info__context__right__target').text(target + "円");
+    $('.user-management__display__info__context__right__remaining').text(remaining + "円");
+  }
+
 
   //ボタン押下時の処理
   function addProcess(num){
@@ -138,6 +166,7 @@ $(function() {
         addIncomeHTML(data);
       }
       addTotalHTML(data.total_array);
+      addUserInfoHTML(data.total_array);
     })
     .fail(function(){
       alert('登録に失敗しました');

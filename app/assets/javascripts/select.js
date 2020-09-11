@@ -21,8 +21,10 @@ $(function() {
       }
       if(data.length > 0){
         addIncome(data[0].total_array);
+        addUserInfoHTML(data[0].double_array);
       }else {
         addIncomeZero();
+        addUserInfoZero();
       }
     })
     .fail(function(){
@@ -91,6 +93,27 @@ $(function() {
     }
     html += '<div class="contents__content__text6__money__context contents__content__text6__money__sum">0円</div>';
     $('.contents__content__text6__money').append(html);
+  }
+
+  function addUserInfoHTML(double_array){
+    let m = $('.select__month').val();
+    let date = "";
+    if(m.length == 1){
+      date = $('.select__year').val() + "-0" + m;
+    } else {
+      date = $('.select__year').val() + "-" + m;
+    }
+    let income = 0;
+    for(i = 0; i < double_array[0].length; i++){
+      if(double_array[0][i] === date){
+        income = double_array[1][i];
+      }
+    }
+    $('.user-management__display__info__context__right__income').text(income + "円");
+  }
+
+  function addUserInfoZero(){
+    $('.user-management__display__info__context__right__income').text("0円");
   }
 
 });

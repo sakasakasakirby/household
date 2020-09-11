@@ -26,12 +26,14 @@ $(document).ready( function(){
       dataType: 'json'
     })
     .done(function(data){
+      console.log(data);
       for(i = 0; i < data.length ; i++){
         addHTML(data[i]);
       }
       if(data.length > 0){
         addIncome(data[0].total_array);
         addTotal(data[0].double_array);
+        addUserInfoHTML(data[0].double_array);
       }
     })
     .fail(function(){
@@ -107,6 +109,31 @@ $(document).ready( function(){
       dis = y + "年"
       $('#select_year').append($('<option>').html(dis).val(y));
     }
+  }
+
+  function addUserInfoHTML(double_array){
+    let m = $('.select__month').val();
+    let date = "";
+    if(m.length == 1){
+      date = $('.select__year').val() + "-0" + m;
+    } else {
+      date = $('.select__year').val() + "-" + m;
+    }
+    let income = 0;
+    let total = 0;
+    for(i = 0; i < double_array[0].length; i++){
+      if(double_array[0][i] === date){
+        income = double_array[1][i];
+      }
+      total += double_array[1][i];
+    }
+    //仮設定
+    target = 1000000;
+    remaining = target - total;
+    $('.user-management__display__info__context__right__income').text(income + "円");
+    $('.user-management__display__info__context__right__total').text(total + "円");
+    $('.user-management__display__info__context__right__target').text(target + "円");
+    $('.user-management__display__info__context__right__remaining').text(remaining + "円");
   }
 
 });

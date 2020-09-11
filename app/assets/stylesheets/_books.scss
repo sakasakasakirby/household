@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
+
 body {
   height: 100vh;
   width: 100vw;
@@ -38,236 +40,321 @@ h1:before {
   }
 }
 
-.container {
-  min-width: 850px;
-  margin: 0 auto;
-  width: calc(100vw - 50px);
-  .select {
-    padding: 10px;
-    &__year {
-      height: 40px;
-      font-size :25px;
-      margin: 0px 0px 5px 0px;
-    }
-    &__month {
-      height: 40px;
-      font-size :25px;
-      margin: 0px 0px 5px 0px;
-    }
-    .graph-button{
-      font-size: 20px;
-      color: black;
-      text-decoration: none;
-      border: medium solid black;
-      border-radius: 10px 10px 10px 10px;
-      background-color: #dddddd;
-      padding: 3px 10px;
-      margin: 0px 10px 5px 0px;
-      float: right;
-    }
-    .user {
-      font-size: 20px;
-      color: black;
-      text-decoration: none;
-      border: medium solid black;
-      border-radius: 10px 10px 10px 10px;
-      background-color: #dddddd;
-      padding: 3px 10px;
-      margin: 0px 0px 5px 0px;
-      float: right;
-    }
-  }
 
-  &__menu {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    &__item {
-      min-width: 92px;
-      display: inline-block;
-      width: calc((100vw - 241px)/7);
-      height: 20px;
-      color: black;
-      text-align: center;
-      line-height: 25px;
-      text-decoration: none;
-      background-color: #D7EEFF;
-      //border: thin solid #dddddd;
-      border-bottom: black;
-      border-radius: 10px 10px 0px 0px;
+.information {
+  display: flex;
+  justify-content: center;
+
+  .container {
+    min-width: 850px;
+    margin: 0 20px;
+    width: calc(100vw - 450px);
+    .select {
       padding: 10px;
-      margin: 10px 3px 0px 0px;
-    }
-    .last-item {
-      margin: 10px 0px 0px 0px;
-    }
-    .active {
-      min-width: 140px;
-      width: calc((100vw - 5px) / 7);
-      height: 27px;
-      font-size: 25px;
-      color: black;
-      background-color: #22FFFF;
-      margin: 3px 3px 0px 0px;
-      &__last-item {
-        margin: 3px 0px 0px 0px;
+      &__year {
+        height: 40px;
+        font-size :25px;
+        margin: 0px 0px 5px 0px;
+      }
+      &__month {
+        height: 40px;
+        font-size :25px;
+        margin: 0px 0px 5px 0px;
+      }
+      .graph-button{
+        font-size: 20px;
+        color: black;
+        text-decoration: none;
+        border: medium solid black;
+        border-radius: 10px 10px 10px 10px;
+        background-color: #dddddd;
+        padding: 3px 10px;
+        margin: 0px 10px 5px 0px;
+        float: right;
       }
     }
-    .income {
-      background-color: #F3FFD8;
+  
+    &__menu {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      &__item {
+        min-width: 92px;
+        display: inline-block;
+        width: calc((100vw - 663px)/7);
+        height: 20px;
+        color: black;
+        text-align: center;
+        line-height: 25px;
+        text-decoration: none;
+        background-color: #D7EEFF;
+        //border: thin solid #dddddd;
+        border-bottom: black;
+        border-radius: 10px 10px 0px 0px;
+        padding: 10px;
+        margin: 10px 3px 0px 0px;
+      }
+      .last-item {
+        margin: 10px 0px 0px 0px;
+      }
+      .active {
+        min-width: 140px;
+        width: calc((100vw - 280px) / 7);
+        height: 27px;
+        font-size: 25px;
+        color: black;
+        background-color: #22FFFF;
+        margin: 3px 3px 0px 0px;
+        &__last-item {
+          margin: 3px 0px 0px 0px;
+        }
+      }
+      .income {
+        background-color: #F3FFD8;
+      }
+      .month {
+        background-color: #E6FFE9;
+      }
+      .total {
+        background-color: #FFEEFF;
+      }
     }
-    .month {
-      background-color: #E6FFE9;
-    }
-    .total {
-      background-color: #FFEEFF;
-    }
-  }
-
-  .contents {
-    list-style: none;
-    background-color: #A7F1FF;
-    background-color:rgba(255,255,255,0.5);
-    &__content {
-      padding: 20px 50px;
-      display: none;
-      &__text1, &__text2, &__text3, &__text4, &__text5, &__text6, &__text7 {
-        height: calc(100vh - 360px);
-        overflow: scroll;
-        font-size: 20px;
-        padding: 30px 30px 10px 50px;
-        background-color: #eeeeee;
-        border-radius: 5px 5px 5px 5px;
-        display: flex;
-        justify-content: start;
-        &__check {
-          width: 20px;
-          margin: 3px 0px 10px 0px;
-          padding: 0px 15px;
-          &__box {
+  
+    .contents {
+      list-style: none;
+      background-color:rgba(255,255,255,0.5);
+      &__content {
+        padding: 5px 5px;
+        display: none;
+        &__text1, &__text2, &__text3, &__text4, &__text5, &__text6, &__text7 {
+          height: calc(100vh - 360px);
+          overflow: scroll;
+          font-size: 20px;
+          padding: 30px 30px 10px 50px;
+          background-color: #eeeeee;
+          border-radius: 5px 5px 5px 5px;
+          display: flex;
+          justify-content: start;
+          &__check {
             width: 20px;
-            height: 20px;
-            margin: 10px 0px 10px 0px;
-          }
-        }
-        &__date {
-          margin: 0px 0px 10px 0px;
-          &__context {
+            margin: 3px 0px 10px 0px;
             padding: 0px 15px;
-            background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #646464 100%);
-            line-height: 2em;
+            &__box {
+              width: 20px;
+              height: 20px;
+              margin: 10px 0px 10px 0px;
+            }
           }
-          &__sum {
-            padding: 3px 50px 0px 50px;
-            border-top: thin solid black;
-            background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #eeeeee 100%);
-            line-height: 2em;
+          &__date {
+            margin: 0px 0px 10px 0px;
+            &__context {
+              padding: 0px 15px;
+              background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #646464 100%);
+              line-height: 2em;
+            }
+            &__sum {
+              padding: 3px 50px 0px 50px;
+              border-top: thin solid black;
+              background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #eeeeee 100%);
+              line-height: 2em;
+            }
           }
-        }
-        &__info {
-          width: 100%;
-          margin: 0px 0px 10px 0px;
-          &__context {
-            padding: 0px 15px;
-            background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #646464 100%);
-            line-height: 2em;
-          }
-          &__sum {
-            font-weight: bold;
-            padding: 3px 0px 0px 15px;
-            border-top: thin solid black;
-            background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #eeeeee 100%);
-            line-height: 2em;
-          }
-          .plus {
-            color: red;
-          }
-          .minus {
-            color: blue;
-          }
-        }
-        &__money {
-          width: 100%;
-          margin: 0px 0px 10px 0px;
-          &__context {
-            text-align: end;
-            padding: 0px 10px;
-            background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #646464 100%);
-            line-height: 2em;
-          }
-          &__sum {
-            font-weight: bold;
-            padding: 3px 10px 0px 0px;
-            border-top: thin solid black;
-            background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #eeeeee 100%);
-            line-height: 2em;
-          }
-          .plus {
-            color: red;
-          }
-          .minus {
-            color: blue;
-          }
-        }
-      }
-      &__add1, &__add2, &__add3, &__add4, &__add5 {
-        font-size: 20px;
-        margin: 20px 0px 0px 0px;
-        text-align: right;
-        min-width: 800px;
-        display: flex;
-        justify-content: flex-end;
-        &__button, &__delete {
-          color: black;
-          text-decoration: none;
-          border: medium solid black;
-          border-radius: 10px 10px 10px 10px;
-          background-color: #dddddd;
-          padding: 0px 10px;
-          margin: -3px 20px 0px 0px;
-        }
-        &__form {
-          margin: -3px 0px -3px 0px;
-          &__calendar {
-            border-radius: 3px;
-            margin: 0px 10px 0px 0px;
-          }
-          &__context {
-            border-radius: 3px;
-            margin: 0px 10px 0px 0px;
+          &__info {
+            width: 100%;
+            margin: 0px 0px 10px 0px;
+            &__context {
+              padding: 0px 15px;
+              background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #646464 100%);
+              line-height: 2em;
+            }
+            &__sum {
+              font-weight: bold;
+              padding: 3px 0px 0px 15px;
+              border-top: thin solid black;
+              background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #eeeeee 100%);
+              line-height: 2em;
+            }
+            .plus {
+              color: red;
+            }
+            .minus {
+              color: blue;
+            }
           }
           &__money {
-            border-radius: 3px;
+            width: 100%;
+            margin: 0px 0px 10px 0px;
+            &__context {
+              text-align: end;
+              padding: 0px 10px;
+              background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #646464 100%);
+              line-height: 2em;
+            }
+            &__sum {
+              font-weight: bold;
+              padding: 3px 10px 0px 0px;
+              border-top: thin solid black;
+              background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #eeeeee 100%);
+              line-height: 2em;
+            }
+            .plus {
+              color: red;
+            }
+            .minus {
+              color: blue;
+            }
           }
-          &__button-y, &__button-n, &__delete-y, &__delete-n {
+        }
+        &__add1, &__add2, &__add3, &__add4, &__add5 {
+          font-size: 20px;
+          margin: 20px 0px 0px 0px;
+          text-align: right;
+          min-width: 800px;
+          display: flex;
+          justify-content: flex-end;
+          &__button, &__delete {
             color: black;
             text-decoration: none;
             border: medium solid black;
             border-radius: 10px 10px 10px 10px;
             background-color: #dddddd;
             padding: 0px 10px;
-            margin: 0px 0px 3px 20px;
+            margin: -3px 20px 10px 0px;
           }
-          &__button-n, &__delete-n {
-            margin: 0px 20px 3px 2px;
+          &__form {
+            margin: -3px 0px -3px 0px;
+            &__calendar {
+              border-radius: 3px;
+              margin: 0px 10px 0px 0px;
+            }
+            &__context {
+              border-radius: 3px;
+              margin: 0px 10px 0px 0px;
+            }
+            &__money {
+              border-radius: 3px;
+            }
+            &__button-y, &__button-n, &__delete-y, &__delete-n {
+              color: black;
+              text-decoration: none;
+              border: medium solid black;
+              border-radius: 10px 10px 10px 10px;
+              background-color: #dddddd;
+              padding: 0px 10px;
+              margin: 0px 0px 13px 20px;
+            }
+            &__button-n, &__delete-n {
+              margin: 0px 20px 3px 2px;
+            }
+            /*
+            &__delete-y, &__delete-n {
+              color: black;
+              text-decoration: none;
+              border: medium solid black;
+              border-radius: 10px 10px 10px 10px;
+              background-color: #dddddd;
+              padding: 0px 10px;
+              margin: 0px 20px 3px 0px;
+            }
+            */
           }
-          /*
-          &__delete-y, &__delete-n {
-            color: black;
-            text-decoration: none;
-            border: medium solid black;
-            border-radius: 10px 10px 10px 10px;
-            background-color: #dddddd;
-            padding: 0px 10px;
-            margin: 0px 20px 3px 0px;
-          }
-          */
         }
       }
+      .show {
+        display: block;
+      }
     }
-    .show {
-      display: block;
+  }
+
+  .user-management {
+    width: 330px;
+    margin: 0px 20px 0px 20px;
+    
+    &__display {
+      min-width: 330px;
+      height: calc(100vh - 251px);
+      border-radius: 5px;
+      padding: 5px;
+      margin: 76px 0px 0px 0px;
+      background-color:rgba(255,255,255,0.5);
+      &__info {
+        height: calc(100vh - 251px);
+        border-radius: 5px;
+        background-color:#eeeeee;
+        &__title {
+          background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #333333 100%);
+          line-height: 1em;
+          padding: 10px 0px 10px 20px;
+          margin: 0px 0px 20px 0px;
+          display: flex;
+          justify-content: left;
+          align-items: center;
+          &__name {
+            font-size: 28px;
+            font-family: 'Noto Serif JP', sans-serif;
+          }
+          .user {
+            width: 18px;
+            height: 18px;
+            font-size: 17px;
+            color: black;
+            text-decoration: none;
+            border: thin solid black;
+            border-radius: 10px 10px 10px 10px;
+            background-color: #dddddd;
+            padding: 5px 5px;
+            margin: 8px 10px 0px 10px;
+          }
+          #logout {
+            margin: 8px 10px 0px -5px;
+          }
+        }
+        &__context {
+          font-size: 18px;
+          font-family: 'Noto Serif JP', sans-serif;
+          padding: 0px 10px;
+          display: flex;
+          justify-content: center;
+          &__left {
+            min-width: 125px;
+          }
+          &__right {
+            min-width: 165px;
+          }
+          &__left, &__right {
+            &__name, &__income, &__total, &__target, &__remaining {
+              background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #333333 100%);
+              line-height: 1em;
+              padding: 5px 20px;
+              margin: 5px 0px 0px 0px;
+            }
+            &__target {
+              color: red;
+            }
+            &__remaining {
+              color: blue;
+            }
+          }
+        }
+        &__object {
+          background-color: #dddddd;
+          margin: 30px 20px 0px 20px;
+          display: flex;
+          justify-content: center;
+          &__image {
+            &__message {
+              font-size: 25px;
+              margin: 0px 0px 0px -30px;
+            }
+            .image {
+              margin: -10px 0px;
+              height: 200px;
+              width: 200px;
+            }
+          }
+        }
+      }
     }
   }
 }
