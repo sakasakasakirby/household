@@ -144,6 +144,26 @@ $(function() {
     //仮設定
     target = 1000000;
     remaining = target - total;
+    //画像変更
+    if(remaining <= 0){
+      let html = '<div class="user-management__display__info__object__image__message">目標達成！</div>'
+      html += '<img class="image" src="/assets/happy_woman.png"></img>';
+      $('.user-management__display__info__object__image__message').remove();
+      $('.image').remove();
+      $('.user-management__display__info__object__image').append(html);
+    } else if(remaining <= target/10){
+      let html = '<div class="user-management__display__info__object__image__message">もう少し！</div>'
+      html += '<img class="image" src="/assets/shock_woman.png"></img>';
+      $('.user-management__display__info__object__image__message').remove();
+      $('.image').remove();
+      $('.user-management__display__info__object__image').append(html);
+    } else {
+      let html = '<div class="user-management__display__info__object__image__message">まだまだじゃん…</div>'
+      html += '<img class="image" src="/assets/shock_woman.png"></img>';
+      $('.user-management__display__info__object__image__message').remove();
+      $('.image').remove();
+      $('.user-management__display__info__object__image').append(html);
+    }
     $('.user-management__display__info__context__right__income').text(income + "円");
     $('.user-management__display__info__context__right__total').text(total + "円");
     $('.user-management__display__info__context__right__target').text(target + "円");

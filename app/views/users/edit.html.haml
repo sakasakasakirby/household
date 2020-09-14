@@ -1,11 +1,11 @@
-.userPage
+.editPage
   .left
     .book
       = image_tag "book.png", size: "500x500"
   .board
     .board__title
       ●ユーザアカウントの編集
-    .board__form
+    .board__form-edit
       = form_for(current_user) do |f|
         .name
           = f.label :name
@@ -16,7 +16,8 @@
         .button
           .message
             = @message
-          = f.submit raw("・変更・#{@name}"), class: 'change'
+          .submit
+            = f.submit raw("　・変更・　#{@name}"), class: 'change'
     .board__return
       = link_to "トップページに戻る", root_path, class: 'return'
   .right

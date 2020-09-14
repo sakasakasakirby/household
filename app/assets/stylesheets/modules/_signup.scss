@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
 @import url('https://fonts.googleapis.com/css?family=Sawarabi+Gothic');
 
-.editPage {
+.signupPage {
   height: 100vh;
   width: 100vw;
   font-family: 'Noto Serif JP', sans-serif;
@@ -26,38 +26,45 @@
     margin-left: 100px;
     &__title {
       font-size: 30px;
-      margin: 100px 55px 100px 55px;
+      margin: 100px 55px 30px 55px;
     }
-    &__form-edit {
+    &__form-login {
       padding: 0px 70px;
-      .name, .mail {
-        font-size: 25px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-left: -100px;
+      .name, .mail, .password, .confirm {
+        font-size: 20px;
         .input {
           width: 280px;
           border-radius: 5px 5px 5px 5px;
           margin-left: 20px;
         }
         .email {
-          margin-left: 21px;
+          margin-top: 5px;
+        }
+        .message {
+          font-size: 14px;
+        }
+        .password__label {
+          display: flex;
+          justify-content: start;
+          align-items: center;
         }
       }
-      .mail {
-        margin: 5px 0px 0px -100px;
-      }
       .button {
+        width: 400px;
+        height: 105px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         .message {
+          width: 200px;
           font-size: 15px;
           color: red;
         }
-        .submit {
-          margin: 30px 0px 0px 250px;
+        .create {
+          width: 200px;
           .change {
-            width: 156px;
-            height: 156px;
+            width: 100px;
+            height: 55px;
             border:double;
             border-color:#dd0000;
             border-radius: 50%;
@@ -67,16 +74,17 @@
             color: #dd0000;
             white-space: pre-line;
             word-break: break-all;
+            margin: 20px 0px 0px 60px;
           }
         }
       }
     }
-    &__return {
-      padding: 90px 0px 0px 240px;
-      .return {
+    &__login {
+      padding: 47px 0px 0px 365px;
+      .link {
         width: 225px;
         height: 40px;
-        font-size: 25px;
+        font-size: 30px;
         color: black;
         text-decoration: none;
         background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #333333 100%);

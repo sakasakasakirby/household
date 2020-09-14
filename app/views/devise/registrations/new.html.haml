@@ -1,31 +1,41 @@
-.AccountPage
-  .AccountPage__title
-    %h2 Create Account
-    %h5 新規アカウントの作成
-    = render "devise/shared/links"
-  .AccountPage__form
-    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-      = devise_error_messages!
-      .FormField
-        .FormField__label--normal
+.signupPage
+  .left
+    .book
+      = image_tag "book.png", size: "500x500"
+  .board
+    .board__title
+      ●新規アカウントの作成
+    .board__form-login
+      = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        .name
           = f.label :name
-        .FormField__input--normal
-          = f.text_field :name, autofocus: true
-      .FormField
-        .FormField__label--normal
-          = f.label :email
-        .FormField__input--normal
-          = f.email_field :email
-      .FormField
-        .FormField__label--normal
-          = f.label :password
-          %i (英数字8文字以上)
-        .FormField__input--normal
-          = f.password_field :password, autocomplete: "off"
-      .FormField
-        .FormField__label--normal
+          .name__input
+            = f.text_field :name, autofocus: true, class: 'input'
+        .mail
+          = f.label :email, class: 'label-email'
+          .mail__input
+            = f.email_field :email, class: 'input email'
+        .password
+          .password__label
+            .name
+              = f.label :password
+            .message
+              %i.message (英数字8文字以上)
+          .password__input
+            = f.password_field :password, autocomplete: "off", class: 'input password'
+        .confirm
           = f.label :password_confirmation
-        .FormField__input--normal
-          = f.password_field :password_confirmation, autocomplete: "off"
-      .actions
-        = f.submit "Create Account", class: 'Button UserButton'
+          .confirm__input
+            = f.password_field :password_confirmation, autocomplete: "off", class: 'input confirm'
+        .button
+          .message
+            = devise_error_messages!
+          .create
+            = f.submit "作成", class: 'change'
+    .board__login
+      = render "devise/shared/links"
+  .right
+    .pen
+      = image_tag "ink_pen.png", size: "250x250"
+    .hanko
+      = image_tag "hanko.png", size: "170x170"
