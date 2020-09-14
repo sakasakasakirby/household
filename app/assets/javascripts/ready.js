@@ -26,7 +26,6 @@ $(document).ready( function(){
       dataType: 'json'
     })
     .done(function(data){
-      console.log(data);
       for(i = 0; i < data.length ; i++){
         addHTML(data[i]);
       }
@@ -130,6 +129,14 @@ $(document).ready( function(){
     //仮設定
     target = 1000000;
     remaining = target - total;
+    /*
+    //画像変えるやつ
+    if(remaining <= 0){
+      let html = 
+      $('.user-management__display__info__object__image').remove();
+      $('.user-management__display__info__object__image').append(html);
+    }
+    */
     $('.user-management__display__info__context__right__income').text(income + "円");
     $('.user-management__display__info__context__right__total').text(total + "円");
     $('.user-management__display__info__context__right__target').text(target + "円");

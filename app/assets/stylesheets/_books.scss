@@ -125,9 +125,11 @@ h1:before {
       list-style: none;
       background-color:rgba(255,255,255,0.5);
       &__content {
-        padding: 5px 5px;
+        min-height: 450px;
+        padding: 5px 5px 5px 5px;
         display: none;
         &__text1, &__text2, &__text3, &__text4, &__text5, &__text6, &__text7 {
+          min-height: 350px;
           height: calc(100vh - 360px);
           overflow: scroll;
           font-size: 20px;
@@ -268,10 +270,12 @@ h1:before {
   }
 
   .user-management {
+    min-height: 1000px;
     width: 330px;
     margin: 0px 20px 0px 20px;
     
     &__display {
+      min-height: 520px;
       min-width: 330px;
       height: calc(100vh - 251px);
       border-radius: 5px;
@@ -279,6 +283,7 @@ h1:before {
       margin: 76px 0px 0px 0px;
       background-color:rgba(255,255,255,0.5);
       &__info {
+        min-height: 520px;
         height: calc(100vh - 251px);
         border-radius: 5px;
         background-color:#eeeeee;

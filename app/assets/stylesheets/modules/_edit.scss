@@ -8,6 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .left {
+    .book {
+      margin: -450px 0px 0px -200px;
+    }
+  }
+
   .board {
     min-width: 600px;
     height: 710px;
@@ -15,7 +22,7 @@
     background-image: url(clipboard_red2.png);
     background-repeat: no-repeat;
     background-size: contain;
-    margin-left: 200px;
+    margin-left: 100px;
     &__title {
       font-size: 30px;
       margin: 100px 55px 100px 55px;
@@ -24,6 +31,10 @@
       padding: 0px 70px;
       .name, .mail {
         font-size: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: -100px;
         .input {
           width: 280px;
           border-radius: 5px 5px 5px 5px;
@@ -34,15 +45,30 @@
         }
       }
       .mail {
-        margin: 10px 0px 0px 0px;
+        margin: 10px 0px 0px -100px;
       }
       .button {
-        font-size: 22px;
-        margin: 30px 0px 0px 280px;
+        .message {
+          font-size: 15px;
+          color: red;
+        }
+        .change {
+          width: 115px;
+          height: 115px;
+          border:double;
+          border-color:#dd0000;
+          border-radius: 50%;
+          background: transparent;
+          font-size: 25px;
+          color: #dd0000;
+          white-space: pre-line;
+          word-break: break-all;
+          margin: 30px 0px 0px 300px;
+        }
       }
     }
     &__return {
-      padding: 200px 0px 0px 240px;
+      padding: 120px 0px 0px 240px;
       .return {
         width: 225px;
         height: 40px;
@@ -53,7 +79,16 @@
       }
     }
   }
-  .pen {
-    margin: -350px 0px 0px -50px;
+
+  .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .pen {
+      margin: -320px 0px 0px -50px;
+    }
+    .hanko {
+      margin: -200px 0px 0px -50px;
+    }
   }
 }

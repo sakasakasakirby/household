@@ -12,8 +12,9 @@ $(function() {
       array = []
       if(num <= 2){
         let date = $('.contents__content__text' + num + '__date__context').eq(n).text();
-        m = date.slice(0, 1);
-        d = date.slice(2, 3);
+        date = date.split('/');
+        m = date[0]
+        d = date[1]
         if(m.length == 1){
           m = "0" + m;
         }

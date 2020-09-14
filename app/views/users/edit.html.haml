@@ -1,4 +1,7 @@
 .userPage
+  .left
+    .book
+      = image_tag "book.png", size: "500x500"
   .board
     .board__title
       ●ユーザアカウントの編集
@@ -10,8 +13,14 @@
         .mail
           = f.label :email
           = f.email_field :email, class: 'input email'
-        = f.submit "書き換える", class: 'button'
+        .button
+          .message
+            = @message
+          = f.submit raw("・変更・#{@name}"), class: 'change'
     .board__return
-      = link_to "トップページに戻る", :back, class: 'return'
-  .pen
-    = image_tag "ink_pen.png", size: "250x250"
+      = link_to "トップページに戻る", root_path, class: 'return'
+  .right
+    .pen
+      = image_tag "ink_pen.png", size: "250x250"
+    .hanko
+      = image_tag "hanko.png", size: "170x170"
