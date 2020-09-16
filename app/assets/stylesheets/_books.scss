@@ -5,52 +5,43 @@ body {
   width: 100vw;
   background-image: url(wood-texture_00007.jpg);
 }
-h1 {
-  color: black;
-  background-color:rgba(255,255,255,0.5);
-  //background-color: #CCFF99;
-  border-radius: 40px 0px 0px 40px;
-}
-h1:before {
-  content: '●';
-  color: white;
-  margin-right: 8px;
-}
 
 .header {
-  height: 100px;
-  width: 100%;
-  margin: 0 auto;
+  height: 140px;
+  background-color:rgba(255,255,255,0.2);
+  padding: 0px 0px 5px 30px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  //background-color:rgba(255,255,255,0.7);
-  &__title{
-    font-size: 30px;
-    padding: 0px 20px;
-    &__sub {
-      padding: 0px 0px 0px 30px;
-      font-size: 20px;
-      &__red {
-        color: #ff0000;
-        font-size: 25px;
-        font-weight: bold;
-      }
+  justify-content: space-between;
+  &__title {
+    width: 570px;
+  }
+  &__image{
+    width: calc(100vw - 600px);
+    display: flex;
+    justify-content: space-between;
+    .left {
+      width: 450px;
+      padding: 30px 0px 0px 100px;
+    }
+    .right {
+      margin: 15px 40px 0px 30px;
     }
   }
 }
 
 
 .information {
+  min-height: 600px;
   display: flex;
   justify-content: center;
 
   .container {
     min-width: 850px;
-    margin: 0 20px;
+    margin: 5px 20px 0px 20px;
     width: calc(100vw - 450px);
+    //height: 600px;
     .select {
-      padding: 10px;
+      padding: 0px 10px 10px 10px;
       &__year {
         height: 40px;
         font-size :25px;
@@ -130,7 +121,7 @@ h1:before {
         display: none;
         &__text1, &__text2, &__text3, &__text4, &__text5, &__text6, &__text7 {
           min-height: 350px;
-          height: calc(100vh - 360px);
+          height: calc(100vh - 380px);
           overflow: scroll;
           font-size: 20px;
           padding: 30px 30px 10px 50px;
@@ -270,7 +261,6 @@ h1:before {
   }
 
   .user-management {
-    min-height: 1000px;
     width: 330px;
     margin: 0px 20px 0px 20px;
     
@@ -280,7 +270,7 @@ h1:before {
       height: calc(100vh - 251px);
       border-radius: 5px;
       padding: 5px;
-      margin: 76px 0px 0px 0px;
+      margin: 50px 0px 0px 0px;
       background-color:rgba(255,255,255,0.5);
       &__info {
         min-height: 520px;
@@ -333,6 +323,12 @@ h1:before {
               line-height: 1em;
               padding: 5px 20px;
               margin: 5px 0px 0px 0px;
+              .user {
+                font-size: 17px;
+                color: grey;
+                text-decoration: none;
+                padding: 0px 0px 2px 1px;
+              }
             }
             &__target {
               color: red;

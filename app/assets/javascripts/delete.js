@@ -125,7 +125,7 @@ $(function() {
     $('.contents__content__text7__money').append(html);
   }
 
-  function addUserInfoHTML(double_array){
+  function addUserInfoHTML(double_array, target){
     let m = $('.select__month').val();
     let date = "";
     if(m.length == 1){
@@ -141,8 +141,6 @@ $(function() {
       }
       total += double_array[1][i];
     }
-    //仮設定
-    target = 1000000;
     remaining = target - total;
     //画像変更
     if(remaining <= 0){
@@ -203,7 +201,7 @@ $(function() {
       addTabTotalHTML(data);
       addIncomeHTML(data);
       addTotalHTML(data.total_array);
-      addUserInfoHTML(data.total_array);
+      addUserInfoHTML(data.total_array, data.target);
     })
     .fail(function(){
       alert('削除に失敗しました');

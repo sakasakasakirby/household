@@ -30,23 +30,33 @@
     }
     &__form-edit {
       padding: 0px 70px;
-      .name, .mail {
+      .name, .mail, .target {
         font-size: 25px;
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
-        margin-left: -100px;
+        .label-target {
+          font-size: 22px;
+        }
         .input {
           width: 280px;
           border-radius: 5px 5px 5px 5px;
-          margin-left: 20px;
+        }
+        .name {
+          margin-left: 42px;
         }
         .email {
-          margin-left: 21px;
+          margin-left: 43px;
+        }
+        .target {
+          margin-left: 25px;
         }
       }
+      .name {
+        margin-bottom: 2px;
+      }
       .mail {
-        margin: 5px 0px 0px -100px;
+        margin-bottom: 5px;
       }
       .button {
         .message {
@@ -72,7 +82,7 @@
       }
     }
     &__return {
-      padding: 90px 0px 0px 240px;
+      padding: 60px 0px 0px 240px;
       .return {
         width: 225px;
         height: 40px;

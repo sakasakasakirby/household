@@ -32,7 +32,7 @@ $(document).ready( function(){
       if(data.length > 0){
         addIncome(data[0].total_array);
         addTotal(data[0].double_array);
-        addUserInfoHTML(data[0].double_array);
+        addUserInfoHTML(data[0].double_array, data[0].target);
       }
     })
     .fail(function(){
@@ -110,7 +110,7 @@ $(document).ready( function(){
     }
   }
 
-  function addUserInfoHTML(double_array){
+  function addUserInfoHTML(double_array, target){
     let m = $('.select__month').val();
     let date = "";
     if(m.length == 1){
@@ -126,8 +126,6 @@ $(document).ready( function(){
       }
       total += double_array[1][i];
     }
-    //仮設定
-    target = 1000000;
     remaining = target - total;
     //画像変更
     if(remaining <= 0){

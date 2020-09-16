@@ -1,0 +1,18 @@
+.west {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(wood-wall.jpg);
+  background-size:contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__header {
+    margin: -120px 0px 0px -50px;
+    .image {
+      filter: drop-shadow(20px 20px 20px rgba(0,0,0,0.8));
+    }
+    .character {
+      filter: drop-shadow(20px 20px 20px rgba(0,0,0,0.8));
+    }
+  }
+}

@@ -4,3 +4,4 @@ json.date @deleted_book.date
 json.item_id @deleted_book.item_id
 json.income @income
 json.total_array @total
+json.target @target

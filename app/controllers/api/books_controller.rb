@@ -2,6 +2,7 @@ class Api::BooksController < ApplicationController
   
   def index
     @books = Book.where(user_id: params[:user_id]).where("date LIKE ?", "%#{params[:date]}%").order(date: "ASC")
+    @target = current_user.target
     if @books
       @money = get_income()
       @total = get_total()

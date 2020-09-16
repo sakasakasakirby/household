@@ -9,15 +9,18 @@
       = form_for(current_user) do |f|
         .name
           = f.label :name
-          = f.text_field :name, autofocus: true, class: 'input'
+          = f.text_field :name, autofocus: true, class: 'input name'
         .mail
           = f.label :email
           = f.email_field :email, class: 'input email'
+        .target
+          = f.label :目標金額, class: 'label-target'
+          = f.text_field :target, class: 'input target'
         .button
           .message
             = @message
           .submit
-            = f.submit raw("　・変更・　#{@name}"), class: 'change'
+            = f.submit "　・変更・　#{@name}", class: 'change'
     .board__return
       = link_to "トップページに戻る", root_path, class: 'return'
   .right

@@ -14,6 +14,7 @@ class BooksController < ApplicationController
     if @book.save
       @income = income_create(params[:user_id], params[:item_id])
       @total = get_total(params[:user_id])
+      @target = current_user.target
       respond_to do |format|
         format.json
       end
@@ -25,6 +26,7 @@ class BooksController < ApplicationController
     if @deleted_book
       @income = income_delete(params[:id], params[:item_id])
       @total = get_total(params[:id])
+      @target = current_user.target
       respond_to do |format|
         format.json
       end
@@ -48,6 +50,9 @@ class BooksController < ApplicationController
     #binding.pry
   end
 
+  def edit
+
+  end
 
   private
 

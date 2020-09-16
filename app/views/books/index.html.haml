@@ -1,9 +1,11 @@
 .header
-  %h1.header__title
-    ざっくり家計簿アプリ
-    .header__title__sub
-      あなたの未来を守りたい ~つけなきゃ家計が
-      %span.header__title__sub__red 火の車
+  .header__title
+    = link_to image_tag(src="title.png", size: "550x140"), root_path
+  .header__image
+    .left
+      = link_to image_tag(src="mountain.png", size: "400x90"), edit_book_path(current_user)
+    .right
+      = image_tag "character.png", size: "130x130"
 
 
 .information
@@ -131,5 +133,4 @@
         .user-management__display__info__object
           .user-management__display__info__object__image
             .user-management__display__info__object__image__message
-              まだまだじゃん…
-            = image_tag 'shock_woman.png', class: 'image'
+            
