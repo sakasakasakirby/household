@@ -66,20 +66,21 @@ $(document).ready( function(){
     html += '<div class="contents__content__text' + data.item_id + '__info__context contents__content__text' + data.item_id + '__info__sum">total</div>';
     $('.contents__content__text' + data.item_id + '__info').append(html);
 
-    html = '<div class="contents__content__text' + data.item_id + '__money__context">' + data.money + '円</div>';
-    html += '<div class="contents__content__text' + data.item_id + '__money__context contents__content__text' + data.item_id + '__money__sum">' + data.total + '円</div>';
+    html = '<div class="contents__content__text' + data.item_id + '__money__context">' + data.money.toLocaleString() + '円</div>';
+    html += '<div class="contents__content__text' + data.item_id + '__money__context contents__content__text' + data.item_id + '__money__sum">' + data.total.toLocaleString() + '円</div>';
+    
     $('.contents__content__text' + data.item_id + '__money').append(html);
   }
 
   function addIncome(array){
     $('.contents__content__text6__money__context').remove();
-    let html = '<div class="contents__content__text6__money__context plus">' + array[4] + '円</div>';
+    let html = '<div class="contents__content__text6__money__context plus">' + array[4].toLocaleString() + '円</div>';
     let income = array[4];
     for(i = array.length-2; i >= 0; i--){
-      html += '<div class="contents__content__text6__money__context minus">' + array[i] + '円</div>';
+      html += '<div class="contents__content__text6__money__context minus">' + array[i].toLocaleString() + '円</div>';
       income -= array[i];
     }
-    html += '<div class="contents__content__text6__money__context contents__content__text6__money__sum">' + income + '円</div>';
+    html += '<div class="contents__content__text6__money__context contents__content__text6__money__sum">' + income.toLocaleString() + '円</div>';
     $('.contents__content__text6__money').append(html);
   }
 
@@ -95,10 +96,10 @@ $(document).ready( function(){
     let total_money = 0;
     html = "";
     for(i = 0; i < array[1].length; i++){
-      html += '<div class="contents__content__text7__money__context">' + array[1][i] + '円</div>';
+      html += '<div class="contents__content__text7__money__context">' + array[1][i].toLocaleString() + '円</div>';
       total_money += array[1][i]
     }
-    html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money + '円</div>';
+    html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money.toLocaleString() + '円</div>';
     $('.contents__content__text7__money').append(html);
   }
 
@@ -147,10 +148,10 @@ $(document).ready( function(){
       $('.image').remove();
       $('.user-management__display__info__object__image').append(html);
     }
-    $('.user-management__display__info__context__right__income').text(income + "円");
-    $('.user-management__display__info__context__right__total').text(total + "円");
-    $('.user-management__display__info__context__right__target').text(target + "円");
-    $('.user-management__display__info__context__right__remaining').text(remaining + "円");
+    $('.user-management__display__info__context__right__income').text(income.toLocaleString() + "円");
+    $('.user-management__display__info__context__right__total').text(total.toLocaleString() + "円");
+    $('.user-management__display__info__context__right__target').text(target.toLocaleString() + "円");
+    $('.user-management__display__info__context__right__remaining').text(remaining.toLocaleString() + "円");
   }
 
 });

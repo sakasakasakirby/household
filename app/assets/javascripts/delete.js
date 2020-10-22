@@ -31,9 +31,10 @@ $(function() {
       }
       array.push($('.contents__content__text' + num + '__info__context').eq(n).text());
       let money = $('.contents__content__text' + num + '__money__context').eq(n).text();
-      array.push(money.slice(0, money.length-1));
+      array.push(Number(money.slice(0, money.length-1).split(',').join('')));
       delete_array.push(array);
     }
+    console.log(delete_array);
     return delete_array;
   }
 
@@ -81,28 +82,30 @@ $(function() {
 
   function addTabTotalHTML(data){
     let id = data.item_id;
-    let total = data.income + "円";
+    let total = data.income.toLocaleString() + "円";
     $('.contents__content__text' + id + '__money__sum').text(total);
   }
 
   function addIncomeHTML(data){
     let id = data.item_id;
-    let total = data.income + "円";
+    let total = data.income.toLocaleString() + "円";
     $('.contents__content__text6__money__context').eq(5-id).text(total);
     let income = 0;
     let inc = $('.contents__content__text5__money__sum').eq(0).text();
-    inc = Number(inc.substr(0, inc.length-1));
+    inc = inc.substr(0, inc.length-1);
+    inc = Number(inc.split(',').join(''));
     if(inc){
       income += inc;
     }
     for(i = 1; i < 5; i++){
       inc = $('.contents__content__text' + i + '__money__sum').eq(0).text();
-      let inc_num = Number(inc.substr(0, inc.length-1))
+      let inc_num = inc.substr(0, inc.length-1);
+      inc_num = Number(inc_num.split(',').join(''));
       if(inc_num){
         income -= inc_num;
       }
     }
-    let income_str = income + "円";
+    let income_str = income.toLocaleString() + "円";
     $('.contents__content__text6__money__context').eq(5).text(income_str);
   }
 
@@ -118,10 +121,10 @@ $(function() {
     let total_money = 0;
     html = "";
     for(i = 0; i < array[1].length; i++){
-      html += '<div class="contents__content__text7__money__context">' + array[1][i] + '円</div>';
+      html += '<div class="contents__content__text7__money__context">' + array[1][i].toLocaleString() + '円</div>';
       total_money += array[1][i]
     }
-    html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money + '円</div>';
+    html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money.toLocaleString() + '円</div>';
     $('.contents__content__text7__money').append(html);
   }
 
@@ -162,10 +165,10 @@ $(function() {
       $('.image').remove();
       $('.user-management__display__info__object__image').append(html);
     }
-    $('.user-management__display__info__context__right__income').text(income + "円");
-    $('.user-management__display__info__context__right__total').text(total + "円");
-    $('.user-management__display__info__context__right__target').text(target + "円");
-    $('.user-management__display__info__context__right__remaining').text(remaining + "円");
+    $('.user-management__display__info__context__right__income').text(income.toLocaleString() + "円");
+    $('.user-management__display__info__context__right__total').text(total.toLocaleString() + "円");
+    $('.user-management__display__info__context__right__target').text(target.toLocaleString() + "円");
+    $('.user-management__display__info__context__right__remaining').text(remaining.toLocaleString() + "円");
   }
 
 

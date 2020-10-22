@@ -68,20 +68,20 @@ $(function() {
     html = '<div class="contents__content__text' + data.item_id + '__info__context">' + data.name + '</div>';
     html += '<div class="contents__content__text' + data.item_id + '__info__context contents__content__text' + data.item_id + '__info__sum">total</div>';
     $('.contents__content__text' + data.item_id + '__info').append(html);
-    html = '<div class="contents__content__text' + data.item_id + '__money__context">' + data.money + '円</div>';
-    html += '<div class="contents__content__text' + data.item_id + '__money__context contents__content__text' + data.item_id + '__money__sum">' + data.total + '円</div>';
+    html = '<div class="contents__content__text' + data.item_id + '__money__context">' + data.money.toLocaleString() + '円</div>';
+    html += '<div class="contents__content__text' + data.item_id + '__money__context contents__content__text' + data.item_id + '__money__sum">' + data.total.toLocaleString() + '円</div>';
     $('.contents__content__text' + data.item_id + '__money').append(html);
   }
 
   function addIncome(array){
     $('.contents__content__text6__money__context').remove();
-    let html = '<div class="contents__content__text6__money__context plus">' + array[4] + '円</div>';
+    let html = '<div class="contents__content__text6__money__context plus">' + array[4].toLocaleString() + '円</div>';
     let income = array[4];
     for(i = array.length-2; i >= 0; i--){
-      html += '<div class="contents__content__text6__money__context minus">' + array[i] + '円</div>';
+      html += '<div class="contents__content__text6__money__context minus">' + array[i].toLocaleString() + '円</div>';
       income -= array[i];
     }
-    html += '<div class="contents__content__text6__money__context contents__content__text6__money__sum">' + income + '円</div>';
+    html += '<div class="contents__content__text6__money__context contents__content__text6__money__sum">' + income.toLocaleString() + '円</div>';
     $('.contents__content__text6__money').append(html);
   }
   
@@ -109,7 +109,7 @@ $(function() {
         income = double_array[1][i];
       }
     }
-    $('.user-management__display__info__context__right__income').text(income + "円");
+    $('.user-management__display__info__context__right__income').text(income.toLocaleString() + "円");
   }
 
   function addUserInfoZero(){

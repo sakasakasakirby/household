@@ -169,10 +169,10 @@ body {
               line-height: 2em;
             }
             .plus {
-              color: red;
+              //color: red;
             }
             .minus {
-              color: blue;
+              color: red;
             }
           }
           &__money {
@@ -192,10 +192,10 @@ body {
               line-height: 2em;
             }
             .plus {
-              color: red;
+              //color: red;
             }
             .minus {
-              color: blue;
+              color: red;
             }
           }
         }
@@ -331,11 +331,16 @@ body {
               }
             }
             &__target {
-              color: red;
+              color: green;
             }
+            /*
             &__remaining {
               color: blue;
             }
+            */
+          }
+          &__right {
+            text-align: end;
           }
         }
         &__object {
