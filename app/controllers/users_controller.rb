@@ -9,7 +9,11 @@ class UsersController < ApplicationController
     if current_user.update(user_params)
       redirect_to root_path
     else
-      @message = "既に使用されています！"
+      if current_user.target < 0
+        @message = "目標金額がマイナスになっています"
+      else
+        @message = "既に使用されています！"
+      end
       render :edit
     end
   end
