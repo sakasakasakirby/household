@@ -1,44 +1,29 @@
 $(function() {
 
+  //チェックされた項目を取得
   function getChecked(num){
     let check_array = [];
     $('input:checkbox[class="contents__content__text' + num + '__check__box"]:checked').each(function() {
       check_array.push($(this).val());
     })
     delete_array = []
-    count = 0
     for(i = 0; i < check_array.length; i++){
-      n = Number(check_array[i]);
+      delete_num = Number(check_array[i]);
       array = []
       if(num <= 2){
-        let date = $('.contents__content__text' + num + '__date__context').eq(n).text();
-        date = date.split('/');
-        m = date[0]
-        d = date[1]
-        if(m.length == 1){
-          m = "0" + m;
-        }
-        if(d.length == 1){
-          d = "0" + d;
-        }
-        array.push($('.select__year').val() + "-" + m + "-" + d);
+        array.push(createDisplayYearMonthDay(num, delete_num));
       } else {
-        m = $('.select__month').val();
-        if(m.length == 1){
-          m = "0" + m;
-        }
-        array.push($('.select__year').val() + "-" + m);
+        array.push(createYearMonth());
       }
-      array.push($('.contents__content__text' + num + '__info__context').eq(n).text());
-      let money = $('.contents__content__text' + num + '__money__context').eq(n).text();
+      array.push($('.contents__content__text' + num + '__info__context').eq(delete_num).text());
+      let money = $('.contents__content__text' + num + '__money__context').eq(delete_num).text();
       array.push(Number(money.slice(0, money.length-1).split(',').join('')));
       delete_array.push(array);
     }
-    console.log(delete_array);
     return delete_array;
   }
 
-  //buildHTMLメソッド
+  //削除ボタンが押された際のフォームの作成
   function createButtonHTML(num){
     let html = '<div class="contents__content__add' + num + '__form">';
     html += '<form>';
@@ -49,6 +34,7 @@ $(function() {
     return html;
   }
 
+  //削除したい項目を選択するためのチェックボックスの作成
   function createCheckBoxHTML(num){
     count = $('.contents__content__text' + num + '__money__context').length - 1;
     let html = '<div class="contents__content__text' + num + '__check">';
@@ -59,118 +45,26 @@ $(function() {
     return html;
   }
 
-  function returnHTML(num) {
-    let html = '<a class="contents__content__add' + num + '__button" href="#">追加</a>';
-    html += '<a class="contents__content__add' + num + '__delete" href="#">削除</a>';
-    return html;
-  }
-
+  //DBから削除された要素をブラウザ上からも削除
   function deleteHTML(num) {
     let check_array = [];
     $('input:checkbox[class="contents__content__text' + num + '__check__box"]:checked').each(function() {
       check_array.push($(this).val());
     })
-    count = 0
     for(i = 0; i < check_array.length; i++){
-      n = Number(check_array[i]) - count;
+      n = Number(check_array[i]) - i;
       $('.contents__content__text' + num + '__date__context').eq(n).remove();
       $('.contents__content__text' + num + '__info__context').eq(n).remove();
       $('.contents__content__text' + num + '__money__context').eq(n).remove();
-      count++;
     }
   }
 
+  //削除した項目があるタブのtotalを更新
   function addTabTotalHTML(data){
     let id = data.item_id;
-    let total = data.income.toLocaleString() + "円";
+    let total = data.total.toLocaleString() + "円";
     $('.contents__content__text' + id + '__money__sum').text(total);
   }
-
-  function addIncomeHTML(data){
-    let id = data.item_id;
-    let total = data.income.toLocaleString() + "円";
-    $('.contents__content__text6__money__context').eq(5-id).text(total);
-    let income = 0;
-    let inc = $('.contents__content__text5__money__sum').eq(0).text();
-    inc = inc.substr(0, inc.length-1);
-    inc = Number(inc.split(',').join(''));
-    if(inc){
-      income += inc;
-    }
-    for(i = 1; i < 5; i++){
-      inc = $('.contents__content__text' + i + '__money__sum').eq(0).text();
-      let inc_num = inc.substr(0, inc.length-1);
-      inc_num = Number(inc_num.split(',').join(''));
-      if(inc_num){
-        income -= inc_num;
-      }
-    }
-    let income_str = income.toLocaleString() + "円";
-    $('.contents__content__text6__money__context').eq(5).text(income_str);
-  }
-
-  function addTotalHTML(array){
-    $('.contents__content__text7__info__context').remove();
-    let html = "";
-    for(i = 0; i < array[0].length; i++){
-      html += '<div class="contents__content__text7__info__context">' + array[0][i] + 'の収支</div>';
-    }
-    html += '<div class="contents__content__text7__info__context contents__content__text7__info__sum">total</div>';
-    $('.contents__content__text7__info').append(html);
-    $('.contents__content__text7__money__context').remove();
-    let total_money = 0;
-    html = "";
-    for(i = 0; i < array[1].length; i++){
-      html += '<div class="contents__content__text7__money__context">' + array[1][i].toLocaleString() + '円</div>';
-      total_money += array[1][i]
-    }
-    html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money.toLocaleString() + '円</div>';
-    $('.contents__content__text7__money').append(html);
-  }
-
-  function addUserInfoHTML(double_array, target){
-    let m = $('.select__month').val();
-    let date = "";
-    if(m.length == 1){
-      date = $('.select__year').val() + "-0" + m;
-    } else {
-      date = $('.select__year').val() + "-" + m;
-    }
-    let income = 0;
-    let total = 0;
-    for(i = 0; i < double_array[0].length; i++){
-      if(double_array[0][i] === date){
-        income = double_array[1][i];
-      }
-      total += double_array[1][i];
-    }
-    remaining = target - total;
-    //画像変更
-    if(remaining <= 0){
-      let html = '<div class="user-management__display__info__object__image__message">目標達成！</div>'
-      html += '<img class="image" src="/assets/happy_woman.png"></img>';
-      $('.user-management__display__info__object__image__message').remove();
-      $('.image').remove();
-      $('.user-management__display__info__object__image').append(html);
-    } else if(remaining <= target/10){
-      let html = '<div class="user-management__display__info__object__image__message">もう少し！</div>'
-      html += '<img class="image" src="/assets/shock_woman.png"></img>';
-      $('.user-management__display__info__object__image__message').remove();
-      $('.image').remove();
-      $('.user-management__display__info__object__image').append(html);
-    } else {
-      let html = '<div class="user-management__display__info__object__image__message">まだまだじゃん…</div>'
-      html += '<img class="image" src="/assets/shock_woman.png"></img>';
-      $('.user-management__display__info__object__image__message').remove();
-      $('.image').remove();
-      $('.user-management__display__info__object__image').append(html);
-    }
-    $('.user-management__display__info__context__right__income').text(income.toLocaleString() + "円");
-    $('.user-management__display__info__context__right__total').text(total.toLocaleString() + "円");
-    $('.user-management__display__info__context__right__target').text(target.toLocaleString() + "円");
-    $('.user-management__display__info__context__right__remaining').text(remaining.toLocaleString() + "円");
-  }
-
 
   //ボタン押下時の処理
   function deleteProcess(num){
@@ -182,6 +76,7 @@ $(function() {
     $('.contents__content__text' + num).prepend(html);
   }
 
+  //フォームの削除
   function interruptProcess(num){
     $('.contents__content__add' + num + '__form').remove();
     $('.contents__content__text' + num + '__check').remove();
@@ -189,9 +84,11 @@ $(function() {
     $('.contents__content__add' + num).append(html);
   }
 
+  //決定
   function decisionProcess(num){
     array = getChecked(num);
     let url = "/books/" + $(".user").attr("class").slice(9);
+    
     $.ajax({
       url: url,
       type: 'DELETE',
@@ -202,7 +99,7 @@ $(function() {
       deleteHTML(num);
       interruptProcess(num);
       addTabTotalHTML(data);
-      addIncomeHTML(data);
+      changeIncomeHTML(data);
       addTotalHTML(data.total_array);
       addUserInfoHTML(data.total_array, data.target);
     })
@@ -210,7 +107,6 @@ $(function() {
       alert('削除に失敗しました');
     })
   }
-
 
   //削除ボタン押された際の処理
   $('.contents__content__add1').on('click', '.contents__content__add1__delete', function(e){

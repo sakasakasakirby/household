@@ -1,15 +1,8 @@
 $(function() {
 
-  //buildHTMLメソッド
+  //追加ボタンが押された際の入力フォームの作成
   function createFormHTML(num){
-    let now = new Date();
-    let year = $('.select__year').val();
-    let month = $('.select__month').val()
-    if(month.length == 1){
-      month = "0" + month;
-    }
-    let day = ("0"+now.getDate()).slice(-2);
-    let today = year + "-" + month + "-" + day;
+    let today = createYearMonthDay();
     let html = '<div class="contents__content__add' + num + '__form">';
     html += '<form>';
     html += '<input type="date" class="contents__content__add' + num + '__form__calendar" max="9999-12-31" value="' + today + '">';
@@ -28,125 +21,6 @@ $(function() {
     return html;
   }
 
-  function returnHTML(num) {
-    let html = '<a class="contents__content__add' + num + '__button" href="#">追加</a>';
-    html += '<a class="contents__content__add' + num + '__delete" href="#">削除</a>';
-    return html;
-  }
-
-  function addHTML(data){
-    $('.contents__content__text' + data.item_id + '__date__sum').remove();
-    $('.contents__content__text' + data.item_id + '__info__sum').remove();
-    $('.contents__content__text' + data.item_id + '__money__sum').remove();
-    let month = data.date.slice(5, 7);
-    let day = data.date.slice(8, 10);
-    if(month[0] == 0){
-      month = month.slice(1, 2);
-    }
-    if(day[0] == 0){
-      day = day.slice(1, 2);
-    }
-    let date = month + "/" + day;
-    if(data.item_id == 1 || data.item_id == 2){
-      let html = '<div class="contents__content__text' + data.item_id + '__date__context">' + date + '</div>';
-      html += '<div class="contents__content__text' + data.item_id + '__date__context contents__content__text' + data.item_id + '__date__sum"></div>';
-      $('.contents__content__text' + data.item_id + '__date').append(html);
-    }
-    html = '<div class="contents__content__text' + data.item_id + '__info__context">' + data.name + '</div>';
-    html += '<div class="contents__content__text' + data.item_id + '__info__context contents__content__text' + data.item_id + '__info__sum">total</div>';
-    $('.contents__content__text' + data.item_id + '__info').append(html);
-    html = '<div class="contents__content__text' + data.item_id + '__money__context">' + data.money.toLocaleString() + '円</div>';
-    html += '<div class="contents__content__text' + data.item_id + '__money__context contents__content__text' + data.item_id + '__money__sum">' + data.income.toLocaleString() + '円</div>';
-    $('.contents__content__text' + data.item_id + '__money').append(html);
-    $('.contents__content__text' + data.item_id).animate({ scrollTop: $('.contents__content__text' + data.item_id)[0].scrollHeight})
-  }
-
-  function addIncomeHTML(data){
-    let id = data.item_id;
-    let total = data.income.toLocaleString() + "円";
-    $('.contents__content__text6__money__context').eq(5-id).text(total);
-    let income = 0;
-    let inc = $('.contents__content__text5__money__sum').eq(0).text();
-    inc = inc.substr(0, inc.length-1);
-    inc = Number(inc.split(',').join(''));
-    if(inc){
-      income += inc;
-    }
-    for(i = 1; i < 5; i++){
-      inc = $('.contents__content__text' + i + '__money__sum').eq(0).text();
-      let inc_num = inc.substr(0, inc.length-1);
-      inc_num = Number(inc_num.split(',').join(''));
-      if(inc_num){
-        income -= inc_num;
-      }
-    }
-    let income_str = income.toLocaleString() + "円";
-    $('.contents__content__text6__money__context').eq(5).text(income_str);
-  }
-
-  function addTotalHTML(array){
-    $('.contents__content__text7__info__context').remove();
-    let html = "";
-    for(i = 0; i < array[0].length; i++){
-      html += '<div class="contents__content__text7__info__context">' + array[0][i] + 'の収支</div>';
-    }
-    html += '<div class="contents__content__text7__info__context contents__content__text7__info__sum">total</div>';
-    $('.contents__content__text7__info').append(html);
-    $('.contents__content__text7__money__context').remove();
-    let total_money = 0;
-    html = "";
-    for(i = 0; i < array[1].length; i++){
-      html += '<div class="contents__content__text7__money__context">' + array[1][i].toLocaleString() + '円</div>';
-      total_money += array[1][i]
-    }
-    html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money.toLocaleString() + '円</div>';
-    $('.contents__content__text7__money').append(html);
-  }
-
-  function addUserInfoHTML(double_array, target){
-    let m = $('.select__month').val();
-    let date = "";
-    if(m.length == 1){
-      date = $('.select__year').val() + "-0" + m;
-    } else {
-      date = $('.select__year').val() + "-" + m;
-    }
-    let income = 0;
-    let total = 0;
-    for(i = 0; i < double_array[0].length; i++){
-      if(double_array[0][i] === date){
-        income = double_array[1][i];
-      }
-      total += double_array[1][i];
-    }
-    remaining = target - total;
-    //画像変更
-    if(remaining <= 0){
-      let html = '<div class="user-management__display__info__object__image__message">目標達成！</div>'
-      html += '<img class="image" src="/assets/happy_woman.png"></img>';
-      $('.user-management__display__info__object__image__message').remove();
-      $('.image').remove();
-      $('.user-management__display__info__object__image').append(html);
-    } else if(remaining <= target/10){
-      let html = '<div class="user-management__display__info__object__image__message">もう少し！</div>'
-      html += '<img class="image" src="/assets/shock_woman.png"></img>';
-      $('.user-management__display__info__object__image__message').remove();
-      $('.image').remove();
-      $('.user-management__display__info__object__image').append(html);
-    } else {
-      let html = '<div class="user-management__display__info__object__image__message">まだまだじゃん…</div>'
-      html += '<img class="image" src="/assets/shock_woman.png"></img>';
-      $('.user-management__display__info__object__image__message').remove();
-      $('.image').remove();
-      $('.user-management__display__info__object__image').append(html);
-    }
-    $('.user-management__display__info__context__right__income').text(income.toLocaleString() + "円");
-    $('.user-management__display__info__context__right__total').text(total.toLocaleString() + "円");
-    $('.user-management__display__info__context__right__target').text(target.toLocaleString() + "円");
-    $('.user-management__display__info__context__right__remaining').text(remaining.toLocaleString() + "円");
-  }
-
-
   //ボタン押下時の処理
   function addProcess(num){
     $('.contents__content__add' + num + '__button').remove();
@@ -155,35 +29,33 @@ $(function() {
     $('.contents__content__add' + num).append(html);
   }
 
+  //フォームの削除
   function interruptProcess(num){
     $('.contents__content__add' + num + '__form').remove();
     let html = returnHTML(num);
     $('.contents__content__add' + num).append(html);
   }
 
+  //決定
   function decisionProcess(num){
     let name = $('.contents__content__add' + num + '__form__context').val();
     let money = $('.contents__content__add' + num + '__form__money').val();
-    let date = $('.contents__content__add' + num + '__form__calendar').val();
-    let c = $(".user").attr("class");
-    let user_id = c.slice(9);
+    let submit_date = $('.contents__content__add' + num + '__form__calendar').val();
+    let date = createYearMonth();
+    let user_id = createUserID();
+    
     $.ajax({
       url: '/books',
       type: 'POST',
-      data: {name: name, money: money, date: date, item_id: num, user_id: user_id},
+      data: {name: name, money: money, date: submit_date, item_id: num, user_id: user_id},
       dataType: 'json'
     })
     .done(function(data){
       interruptProcess(num);
       let get_date = data.date.substr(0, data.date.length-3);
-      let month = "" + $('.select__month').val();
-      if(month.length == 1){
-        month = "0" + month;
-      }
-      let date = $('.select__year').val() + "-" + month;
       if(date === get_date){
         addHTML(data);
-        addIncomeHTML(data);
+        changeIncomeHTML(data);
       }
       addTotalHTML(data.total_array);
       addUserInfoHTML(data.total_array, data.target);
@@ -192,7 +64,6 @@ $(function() {
       alert('登録に失敗しました');
     })
   }
-
 
   //追加ボタン押された際の処理
   $('.contents__content__add1').on('click', '.contents__content__add1__button', function(e){
@@ -259,7 +130,5 @@ $(function() {
     e.preventDefault();
     decisionProcess(5);
   })
-
   
-
 });
