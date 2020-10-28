@@ -90,12 +90,19 @@
       %li.contents__content
         %div{class: "contents__content__text#{@item_num.length+2}"}
           %div{class: "contents__content__text#{@item_num.length+2}__info"}
+            - @total[0].length.times do |i|
+              %div{class: "contents__content__text#{@item_num.length+2}__info__context"}
+                = "#{@total[0][i]}の収支"
             %div{class: "contents__content__text#{@item_num.length+2}__info__context contents__content__text#{@item_num.length+2}__info__sum"}
               total
           %div{class: "contents__content__text#{@item_num.length+2}__money"}
+            - total_money = 0
+            - @total[0].length.times do |i|
+              %div{class: "contents__content__text#{@item_num.length+2}__money__context"}
+                = "#{@total[1][i].to_s(:delimited)}円"
+              - total_money += @total[1][i]
             %div{class: "contents__content__text#{@item_num.length+2}__money__context contents__content__text#{@item_num.length+2}__money__sum"}
-              0円
-
+              = "#{total_money.to_s(:delimited)}円"
 
   .user-management
     .user-management__display
@@ -125,12 +132,26 @@
             .user-management__display__info__context__right__income
               0円
             .user-management__display__info__context__right__total
-              0円
+              = "#{total_money.to_s(:delimited)}円"
             .user-management__display__info__context__right__target
-              1000000円
+              = "#{@target.to_s(:delimited)}円"
             .user-management__display__info__context__right__remaining
-              1000000円
+              = "#{(@target-total_money).to_s(:delimited)}円"
         .user-management__display__info__object
           .user-management__display__info__object__image
-            .user-management__display__info__object__image__message
-            
+            - if @target == 0
+              .user-management__display__info__object__image__message
+                目標を設定しよう！
+              = image_tag "/assets/family_syunyu.png", class: "image"
+            - elsif @target-total_money <= 0
+              .user-management__display__info__object__image__message
+                目標達成！
+              = image_tag "/assets/happy_woman.png", class: "image"
+            - elsif @target-total_money > (@target/10)
+              .user-management__display__info__object__image__message
+                まだまだじゃん
+              = image_tag "/assets/shock_woman.png", class: "image"
+            - else
+              .user-management__display__info__object__image__message
+                もう少し！
+              = image_tag "/assets/shock_woman.png", class: "image"

@@ -3,8 +3,8 @@ class BooksController < ApplicationController
   def index
     @user_id = current_user.id
     @item_num = Item.select("id")
-    #@total = get_total(current_user.id)
-    #binding.pry
+    @total = get_total(current_user.id)
+    @target = User.find(current_user.id).target
   end
 
   def create
@@ -41,13 +41,7 @@ class BooksController < ApplicationController
     end
     @income = get_income_graph(params[:id])
     @expense = get_expense_graph(params[:id])
-    #@expense.length.times do |i|
-      #@expense[i] = @expense[i] - (@expense[i]*2)
-    #end
     @label = get_label_graph(params[:id])
-    #label = get_income_graph()[0]
-    #@label = label.join(',')
-    #binding.pry
   end
 
   def edit
