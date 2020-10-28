@@ -44,9 +44,9 @@ class BooksController < ApplicationController
     @label = get_label_graph(params[:id])
   end
 
-  def edit
-
+  def west_mountain
   end
+
 
   private
 
@@ -199,6 +199,5 @@ class BooksController < ApplicationController
     end
     return total_money
   end
-
 
 end

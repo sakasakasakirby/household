@@ -1,9 +1,9 @@
 @import "reset";
-@import "books";
-@import "graphs";
-@import "west";
-@import "modules/edit";
-@import "modules/login";
-@import "modules/signup";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "books/books";
+@import "books/graphs";
+@import "books/west_mountain";
+@import "users/edit";
+@import "users/login";
+@import "users/signup";
