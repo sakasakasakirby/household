@@ -5,16 +5,16 @@ $(function() {
     let context = $('.contents__content__text' + num + '__info__context').eq(checked_num).text();
     let money = $('.contents__content__text' + num + '__money__context').eq(checked_num).text().split(',').join('');
     money = money.slice(0, money.length-1);
-    let html = '<input type="text" name="' + context + '" id="context' + checked_num + '" value="' + context + '" size="20" maxlength="20">';
+    let html = '<input type="text" class="textarea" name="' + context + '" id="context' + checked_num + '" value="' + context + '" size="20" maxlength="20">';
     $('.contents__content__text' + num + '__info__context').eq(checked_num).html(html);
-    html = '<input type="text" name="' + money + '" id="money' + checked_num + '" value="' + money + '" size="7" maxlength="10">円';
+    html = '<input type="text" class="textarea" name="' + money + '" id="money' + checked_num + '" value="' + money + '" size="7" maxlength="10">円';
     $('.contents__content__text' + num + '__money__context').eq(checked_num).html(html);
   }
 
   //チェックを外されたレコードを元に戻す
   function undoTextFormChecked(num, checked_num){
-    let context = $('#context' + checked_num).attr('name');
-    let money = Number($('#money' + checked_num).attr('name')).toLocaleString();
+    let context = $('.contents__content__text' + num + '__info__context').eq(checked_num).children().attr('name');
+    let money = Number($('.contents__content__text' + num + '__money__context').eq(checked_num).children().attr('name')).toLocaleString();
     $('.contents__content__text' + num + '__info__context').eq(checked_num).html(context);
     $('.contents__content__text' + num + '__money__context').eq(checked_num).html(money + "円");
   }
