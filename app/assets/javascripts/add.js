@@ -23,8 +23,7 @@ $(function() {
 
   //ボタン押下時の処理
   function addProcess(num){
-    $('.contents__content__add' + num + '__button').remove();
-    $('.contents__content__add' + num + '__delete').remove();
+    deleteButtonHTML(num);
     let html = createFormHTML(num);
     $('.contents__content__add' + num).append(html);
   }
@@ -55,7 +54,7 @@ $(function() {
       let get_date = data.date.substr(0, data.date.length-3);
       if(date === get_date){
         addHTML(data);
-        changeIncomeHTML(data);
+        changeIncomeHTML(data.total, data.item_id);
       }
       addTotalHTML(data.total_array);
       addUserInfoHTML(data.total_array, data.target);

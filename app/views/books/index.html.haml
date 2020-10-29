@@ -38,6 +38,7 @@
                   0円
             %div{class: "contents__content__add#{num.id}"}
               = link_to "追加", "#", class: "contents__content__add#{num.id}__button"
+              = link_to "編集", "#", class: "contents__content__add#{num.id}__update"
               = link_to "削除", "#", class: "contents__content__add#{num.id}__delete"
         -else
           %li.contents__content.show
@@ -52,6 +53,7 @@
                   0円
             %div{class: "contents__content__add#{num.id}"}
               = link_to "追加", "#", class: "contents__content__add#{num.id}__button"
+              = link_to "編集", "#", class: "contents__content__add#{num.id}__update"
               = link_to "削除", "#", class: "contents__content__add#{num.id}__delete"
 
       %li.contents__content

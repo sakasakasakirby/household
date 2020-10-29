@@ -97,7 +97,6 @@ function addTotalHTML(array){
   html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money.toLocaleString() + '円</div>';
   $('.contents__content__text7__money').append(html);
 }
-
 //ユーザ情報の表示
 function addUserInfoHTML(double_array, target){
   let m = $('.select__month').val();
@@ -155,18 +154,23 @@ function addIncomeHTML(array){
   $('.contents__content__text6__money').append(html);
 }
 
-/*add.js, delete.jsで使用*/
-//追加ボタンと削除ボタンの作成
+/*add.js, update.js, delete.jsで使用*/
+//追加、更新、削除ボタンのいずれかが押された際にその全てのボタンをブラウザから削除
+function deleteButtonHTML(num){
+  $('.contents__content__add' + num + '__button').remove();
+  $('.contents__content__add' + num + '__update').remove();
+  $('.contents__content__add' + num + '__delete').remove();
+}
+//追加、更新、削除ボタンの作成
 function returnHTML(num) {
   let html = '<a class="contents__content__add' + num + '__button" href="#">追加</a>';
+  html += '<a class="contents__content__add' + num + '__update" href="#">編集</a>';
   html += '<a class="contents__content__add' + num + '__delete" href="#">削除</a>';
   return html;
 }
-
 //今月の収支タブの項目の変更
-function changeIncomeHTML(data){
-  let id = data.item_id;
-  let total = data.total.toLocaleString() + "円";
+function changeIncomeHTML(tab_total, id){
+  let total = tab_total.toLocaleString() + "円";
   $('.contents__content__text6__money__context').eq(5-id).text(total);
   let income = 0;
   let inc = $('.contents__content__text5__money__sum').eq(0).text();
@@ -185,4 +189,38 @@ function changeIncomeHTML(data){
   }
   let income_str = income.toLocaleString() + "円";
   $('.contents__content__text6__money__context').eq(5).text(income_str);
+}
+
+/*update.js, delete.jsで使用*/
+//更新、削除ボタンが押された際のフォームの作成
+function createButtonHTML(num, button){
+  let html = '<div class="contents__content__add' + num + '__form">';
+  html += '<form>';
+  html += '<input type="submit" class="contents__content__add' + num + '__form__' + button + '-y" value="決定">';
+  html += '<input type="submit" class="contents__content__add' + num + '__form__' + button + '-n" value="中止">';
+  html += '</form>';
+  html += '</div>';
+  return html;
+}
+//更新、削除したい項目を選択するためのチェックボックスの作成
+function createCheckBoxHTML(num, button){
+  count = $('.contents__content__text' + num + '__money__context').length - 1;
+  let html = '<div class="contents__content__text' + num + '__check-' + button + '">';
+  for(i = 0; i < count; i++){
+    html += '<input type="checkbox" id="box' + i + '" class="contents__content__text' + num + '__check-' + button + '__box" value="' + i + '">';
+  }
+  html += '</div>';
+  return html;
+}
+//フォームの削除
+function interruptProcessUpdateDelete(num, button){
+  $('.contents__content__add' + num + '__form').remove();
+  $('.contents__content__text' + num + '__check-' + button).remove();
+  let html = returnHTML(num);
+  $('.contents__content__add' + num).append(html);
+}
+//更新、削除した項目があるタブのtotalを更新
+function addTabTotalHTML(tab_total, id){
+  let total = tab_total.toLocaleString() + "円";
+  $('.contents__content__text' + id + '__money__sum').text(total);
 }

@@ -1,9 +1,9 @@
 $(function() {
 
   //チェックされた項目を取得
-  function getChecked(num){
+  function getCheckedContext(num, button){
     let check_array = [];
-    $('input:checkbox[class="contents__content__text' + num + '__check__box"]:checked').each(function() {
+    $('input:checkbox[class="contents__content__text' + num + '__check-' + button + '__box"]:checked').each(function() {
       check_array.push($(this).val());
     })
     delete_array = []
@@ -23,32 +23,10 @@ $(function() {
     return delete_array;
   }
 
-  //削除ボタンが押された際のフォームの作成
-  function createButtonHTML(num){
-    let html = '<div class="contents__content__add' + num + '__form">';
-    html += '<form>';
-    html += '<input type="submit" class="contents__content__add' + num + '__form__delete-y" value="決定">';
-    html += '<input type="submit" class="contents__content__add' + num + '__form__delete-n" value="中止">';
-    html += '</form>';
-    html += '</div>';
-    return html;
-  }
-
-  //削除したい項目を選択するためのチェックボックスの作成
-  function createCheckBoxHTML(num){
-    count = $('.contents__content__text' + num + '__money__context').length - 1;
-    let html = '<div class="contents__content__text' + num + '__check">';
-    for(i = 0; i < count; i++){
-      html += '<input type="checkbox" id="box' + i + '" class="contents__content__text' + num + '__check__box" value="' + i + '">';
-    }
-    html += '</div>';
-    return html;
-  }
-
   //DBから削除された要素をブラウザ上からも削除
-  function deleteHTML(num) {
+  function deleteHTML(num, button) {
     let check_array = [];
-    $('input:checkbox[class="contents__content__text' + num + '__check__box"]:checked').each(function() {
+    $('input:checkbox[class="contents__content__text' + num + '__check-' + button + '__box"]:checked').each(function() {
       check_array.push($(this).val());
     })
     for(i = 0; i < check_array.length; i++){
@@ -59,34 +37,18 @@ $(function() {
     }
   }
 
-  //削除した項目があるタブのtotalを更新
-  function addTabTotalHTML(data){
-    let id = data.item_id;
-    let total = data.total.toLocaleString() + "円";
-    $('.contents__content__text' + id + '__money__sum').text(total);
-  }
-
   //ボタン押下時の処理
   function deleteProcess(num){
-    $('.contents__content__add' + num + '__button').remove();
-    $('.contents__content__add' + num + '__delete').remove();
-    let html = createButtonHTML(num);
+    deleteButtonHTML(num);
+    let html = createButtonHTML(num, "delete");
     $('.contents__content__add' + num).append(html);
-    html = createCheckBoxHTML(num);
+    html = createCheckBoxHTML(num, "delete");
     $('.contents__content__text' + num).prepend(html);
-  }
-
-  //フォームの削除
-  function interruptProcess(num){
-    $('.contents__content__add' + num + '__form').remove();
-    $('.contents__content__text' + num + '__check').remove();
-    let html = returnHTML(num);
-    $('.contents__content__add' + num).append(html);
   }
 
   //決定
   function decisionProcess(num){
-    array = getChecked(num);
+    array = getCheckedContext(num, "delete");
     let url = "/books/" + $(".user").attr("class").slice(9);
     
     $.ajax({
@@ -96,10 +58,10 @@ $(function() {
       dataType: 'json'
     })
     .done(function(data){
-      deleteHTML(num);
-      interruptProcess(num);
-      addTabTotalHTML(data);
-      changeIncomeHTML(data);
+      deleteHTML(num, "delete");
+      interruptProcessUpdateDelete(num, "delete");
+      addTabTotalHTML(data.total, data.item_id);
+      changeIncomeHTML(data.total, data.item_id);
       addTotalHTML(data.total_array);
       addUserInfoHTML(data.total_array, data.target);
     })
@@ -133,23 +95,23 @@ $(function() {
   //中止ボタン押された際の処理
   $('.contents__content__add1').on('click', '.contents__content__add1__form__delete-n', function(e){
     e.preventDefault();
-    interruptProcess(1);
+    interruptProcessUpdateDelete(1, "delete");
   })
   $('.contents__content__add2').on('click', '.contents__content__add2__form__delete-n', function(e){
     e.preventDefault();
-    interruptProcess(2);
+    interruptProcessUpdateDelete(2, "delete");
   })
   $('.contents__content__add3').on('click', '.contents__content__add3__form__delete-n', function(e){
     e.preventDefault();
-    interruptProcess(3);
+    interruptProcessUpdateDelete(3, "delete");
   })
   $('.contents__content__add4').on('click', '.contents__content__add4__form__delete-n', function(e){
     e.preventDefault();
-    interruptProcess(4);
+    interruptProcessUpdateDelete(4, "delete");
   })
   $('.contents__content__add5').on('click', '.contents__content__add5__form__delete-n', function(e){
     e.preventDefault();
-    interruptProcess(5);
+    interruptProcessUpdateDelete(5, "delete");
   })
 
   //決定ボタン押された際の処理
