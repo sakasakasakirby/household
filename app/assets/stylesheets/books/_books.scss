@@ -3,6 +3,8 @@
 body {
   height: 100vh;
   width: 100vw;
+  min-height: 789px;
+  min-width: 1440px;
   background-image: url(wood-texture_00007.jpg);
 }
 
@@ -16,7 +18,7 @@ body {
     width: 570px;
   }
   &__image{
-    width: calc(100vw - 600px);
+    width: calc(1440px - 600px);
     display: flex;
     justify-content: space-between;
     .left {
@@ -129,7 +131,7 @@ body {
           border-radius: 5px 5px 5px 5px;
           display: flex;
           justify-content: start;
-          &__check {
+          &__check-delete, &__check-update {
             width: 20px;
             margin: 3px 0px 10px 0px;
             padding: 0px 15px;
@@ -206,7 +208,7 @@ body {
           min-width: 800px;
           display: flex;
           justify-content: flex-end;
-          &__button, &__delete {
+          &__button, &__update, &__delete {
             color: black;
             text-decoration: none;
             border: medium solid black;
@@ -228,7 +230,7 @@ body {
             &__money {
               border-radius: 3px;
             }
-            &__button-y, &__button-n, &__delete-y, &__delete-n {
+            &__button-y, &__button-n, &__update-y, &__update-n, &__delete-y, &__delete-n {
               color: black;
               text-decoration: none;
               border: medium solid black;
@@ -237,20 +239,9 @@ body {
               padding: 0px 10px;
               margin: 0px 0px 13px 20px;
             }
-            &__button-n, &__delete-n {
+            &__button-n, &__update-n, &__delete-n {
               margin: 0px 20px 3px 2px;
             }
-            /*
-            &__delete-y, &__delete-n {
-              color: black;
-              text-decoration: none;
-              border: medium solid black;
-              border-radius: 10px 10px 10px 10px;
-              background-color: #dddddd;
-              padding: 0px 10px;
-              margin: 0px 20px 3px 0px;
-            }
-            */
           }
         }
       }

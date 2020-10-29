@@ -33,6 +33,18 @@ class BooksController < ApplicationController
     end
   end
 
+  def update
+    update_record(params[:array], params[:id], params[:item_id])
+    if @update
+      @income = income_update(params[:id], params[:item_id])
+      @total = get_total(params[:id])
+      @target = current_user.target
+      respond_to do |format|
+        format.json
+      end
+    end
+  end
+
   def show
     @total = get_total_graph(params[:id])
     if @total.length != 0
@@ -75,6 +87,23 @@ class BooksController < ApplicationController
     end
   end
 
+  def update_record(params_array, user_id, item_id)
+    @update_books = []
+    params_array.each do |array|
+      if (array[1][:"1"][1] == "" || array[1][:"1"][1].include?(" ") || array[1][:"1"][1].include?("　"))
+        array[1][:"1"][1] = nil
+      end
+      if (array[1][:"1"][2] == "0")
+        array[1][:"1"][2] = nil
+      end
+      @before_book = Book.where(user_id: user_id).where(item_id: item_id).where("date LIKE ?", "%#{array[1][:"0"][0]}%").where(name: array[1][:"0"][1]).where(money: array[1][:"0"][2])
+      @before_book.length.times do |i|
+        @update = Book.find(@before_book[i][:id]).update(name: array[1][:"1"][1], money: array[1][:"1"][2])
+      end
+      @update_books.push([array[1][:"1"][0], array[1][:"1"][1], array[1][:"1"][2]])
+    end
+  end
+
   def income_calc(user_id, item_id, date)
     get_money = Book.where(user_id: user_id).where(item_id: item_id).where("date LIKE ?", "%#{date}%")
     income = 0
@@ -94,6 +123,11 @@ class BooksController < ApplicationController
     if params[:id].to_i <= 2
       date = date.slice(0..6)
     end
+    return income_calc(user_id, item_id, date)
+  end
+
+  def income_update(user_id, item_id)
+    date = params[:array][:"0"]["0"][0].slice(0..6)
     return income_calc(user_id, item_id, date)
   end
 
