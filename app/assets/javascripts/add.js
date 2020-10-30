@@ -64,70 +64,22 @@ $(function() {
     })
   }
 
-  //追加ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__button', function(e){
-    e.preventDefault();
-    addProcess(1);
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__button', function(e){
-    e.preventDefault();
-    addProcess(2);
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__button', function(e){
-    e.preventDefault();
-    addProcess(3);
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__button', function(e){
-    e.preventDefault();
-    addProcess(4);
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__button', function(e){
-    e.preventDefault();
-    addProcess(5);
-  })
-
-  //中止ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__form__button-n', function(e){
-    e.preventDefault();
-    interruptProcess(1);
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__form__button-n', function(e){
-    e.preventDefault();
-    interruptProcess(2);
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__form__button-n', function(e){
-    e.preventDefault();
-    interruptProcess(3);
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__form__button-n', function(e){
-    e.preventDefault();
-    interruptProcess(4);
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__form__button-n', function(e){
-    e.preventDefault();
-    interruptProcess(5);
-  })
-
-  //決定ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__form__button-y', function(e){
-    e.preventDefault();
-    decisionProcess(1);
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__form__button-y', function(e){
-    e.preventDefault();
-    decisionProcess(2);
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__form__button-y', function(e){
-    e.preventDefault();
-    decisionProcess(3);
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__form__button-y', function(e){
-    e.preventDefault();
-    decisionProcess(4);
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__form__button-y', function(e){
-    e.preventDefault();
-    decisionProcess(5);
-  })
+  for(j = 5; j > 0; j--) {
+    //追加ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__button`, function(e){
+      e.preventDefault();
+      addProcess(Number(e.target.className.slice(e.target.className.length-9, e.target.className.length-8)));
+    })
+    //中止ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__form__button-n`, function(e){
+      e.preventDefault();
+      interruptProcess(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)));
+    })
+    //決定ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__form__button-y`, function(e){
+      e.preventDefault();
+      decisionProcess(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)));
+    })
+  }
   
 });

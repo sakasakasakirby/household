@@ -70,70 +70,23 @@ $(function() {
     })
   }
 
-  //削除ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__delete', function(e){
-    e.preventDefault();
-    deleteProcess(1);
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__delete', function(e){
-    e.preventDefault();
-    deleteProcess(2);
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__delete', function(e){
-    e.preventDefault();
-    deleteProcess(3);
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__delete', function(e){
-    e.preventDefault();
-    deleteProcess(4);
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__delete', function(e){
-    e.preventDefault();
-    deleteProcess(5);
-  })
-
-  //中止ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__form__delete-n', function(e){
-    e.preventDefault();
-    interruptProcessUpdateDelete(1, "delete");
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__form__delete-n', function(e){
-    e.preventDefault();
-    interruptProcessUpdateDelete(2, "delete");
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__form__delete-n', function(e){
-    e.preventDefault();
-    interruptProcessUpdateDelete(3, "delete");
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__form__delete-n', function(e){
-    e.preventDefault();
-    interruptProcessUpdateDelete(4, "delete");
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__form__delete-n', function(e){
-    e.preventDefault();
-    interruptProcessUpdateDelete(5, "delete");
-  })
-
-  //決定ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__form__delete-y', function(e){
-    e.preventDefault();
-    decisionProcess(1);
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__form__delete-y', function(e){
-    e.preventDefault();
-    decisionProcess(2);
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__form__delete-y', function(e){
-    e.preventDefault();
-    decisionProcess(3);
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__form__delete-y', function(e){
-    e.preventDefault();
-    decisionProcess(4);
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__form__delete-y', function(e){
-    e.preventDefault();
-    decisionProcess(5);
-  })
+  for(j = 5; j > 0; j--) {
+    //削除ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__delete`, function(e){
+      e.preventDefault();
+      deleteProcess(Number(e.target.className.slice(e.target.className.length-9, e.target.className.length-8)));
+    })
+    //中止ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__form__delete-n`, function(e){
+      e.preventDefault();
+      interruptProcessUpdateDelete(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)), "delete");
+    })
+    //決定ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__form__delete-y`, function(e){
+      e.preventDefault();
+      console.log(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)));
+      decisionProcess(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)));
+    })
+  }
 
 });
