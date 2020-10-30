@@ -97,112 +97,31 @@ $(function() {
     })
   }
 
-  //更新ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__update', function(e){
-    e.preventDefault();
-    updateProcess(1);
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__update', function(e){
-    e.preventDefault();
-    updateProcess(2);
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__update', function(e){
-    e.preventDefault();
-    updateProcess(3);
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__update', function(e){
-    e.preventDefault();
-    updateProcess(4);
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__update', function(e){
-    e.preventDefault();
-    updateProcess(5);
-  })
-
-  //チェックボックスにチェックされた際の処理
-  $('.contents__content__text1').on('click', '.contents__content__text1__check-update__box', function(e){
-    if($(this).prop('checked')){
-      createTextFormChecked(1, $(this).val());
-    } else {
-      undoTextFormChecked(1, $(this).val());
-    }
-  })
-  $('.contents__content__text2').on('click', '.contents__content__text2__check-update__box', function(e){
-    if($(this).prop('checked')){
-      createTextFormChecked(2, $(this).val());
-    } else {
-      undoTextFormChecked(2, $(this).val());
-    }
-  })
-  $('.contents__content__text3').on('click', '.contents__content__text3__check-update__box', function(e){
-    if($(this).prop('checked')){
-      createTextFormChecked(3, $(this).val());
-    } else {
-      undoTextFormChecked(3, $(this).val());
-    }
-  })
-  $('.contents__content__text4').on('click', '.contents__content__text4__check-update__box', function(e){
-    if($(this).prop('checked')){
-      createTextFormChecked(4, $(this).val());
-    } else {
-      undoTextFormChecked(4, $(this).val());
-    }
-  })
-  $('.contents__content__text5').on('click', '.contents__content__text5__check-update__box', function(e){
-    if($(this).prop('checked')){
-      createTextFormChecked(5, $(this).val());
-    } else {
-      undoTextFormChecked(5, $(this).val());
-    }
-  })
-
-  //中止ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__form__update-n', function(e){
-    e.preventDefault();
-    getCheckedUpdate(1, "update").forEach(i => undoTextFormChecked(1, i));
-    interruptProcessUpdateDelete(1, "update");
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__form__update-n', function(e){
-    e.preventDefault();
-    getCheckedUpdate(2, "update").forEach(i => undoTextFormChecked(2, i));
-    interruptProcessUpdateDelete(2, "update");
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__form__update-n', function(e){
-    e.preventDefault();
-    getCheckedUpdate(3, "update").forEach(i => undoTextFormChecked(3, i));
-    interruptProcessUpdateDelete(3, "update");
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__form__update-n', function(e){
-    e.preventDefault();
-    getCheckedUpdate(4, "update").forEach(i => undoTextFormChecked(4, i));
-    interruptProcessUpdateDelete(4, "update");
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__form__update-n', function(e){
-    e.preventDefault();
-    getCheckedUpdate(5, "update").forEach(i => undoTextFormChecked(5, i));
-    interruptProcessUpdateDelete(5, "update");
-  })
-
-  //決定ボタン押された際の処理
-  $('.contents__content__add1').on('click', '.contents__content__add1__form__update-y', function(e){
-    e.preventDefault();
-    decisionProcess(1);
-  })
-  $('.contents__content__add2').on('click', '.contents__content__add2__form__update-y', function(e){
-    e.preventDefault();
-    decisionProcess(2);
-  })
-  $('.contents__content__add3').on('click', '.contents__content__add3__form__update-y', function(e){
-    e.preventDefault();
-    decisionProcess(3);
-  })
-  $('.contents__content__add4').on('click', '.contents__content__add4__form__update-y', function(e){
-    e.preventDefault();
-    decisionProcess(4);
-  })
-  $('.contents__content__add5').on('click', '.contents__content__add5__form__update-y', function(e){
-    e.preventDefault();
-    decisionProcess(5);
-  })
+  for(j = 5; j > 0; j--) {
+    //更新ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__update`, function(e){
+      e.preventDefault();
+      updateProcess(Number(e.target.className.slice(e.target.className.length-9, e.target.className.length-8)));
+    })
+    //チェックボックスにチェックされた際の処理
+    $(`.contents__content__text${j}`).on('click', `.contents__content__text${j}__check-update__box`, function(e){
+      if($(this).prop('checked')){
+        createTextFormChecked(Number(e.target.className.slice(e.target.className.length-20, e.target.className.length-19)), $(this).val());
+      } else {
+        undoTextFormChecked(Number(e.target.className.slice(e.target.className.length-20, e.target.className.length-19)), $(this).val());
+      }
+    })
+    //中止ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__form__update-n`, function(e){
+      e.preventDefault();
+      getCheckedUpdate(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)), "update").forEach(i => undoTextFormChecked(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)), i));
+      interruptProcessUpdateDelete(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)), "update");
+    })
+    //決定ボタン押された際の処理
+    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__form__update-y`, function(e){
+      e.preventDefault();
+      decisionProcess(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)));
+    })
+  }
 
 });
