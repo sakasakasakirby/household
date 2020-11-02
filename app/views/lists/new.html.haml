@@ -1,0 +1,30 @@
+.listPage
+  .left
+    .book
+      = image_tag "book.png", size: "500x500"
+  .board
+    .board__title
+      ●よく使うリストの設定
+    .board__list
+      = form_with model: @list, class: "board__list__form", local: true do |f|
+        - array = ["生活費", "その他", "光熱費など"]
+        - @lists.each_with_index do |list, i|
+          = array[i]
+          .formArea
+            .text_box
+              = f.text_field :name, class: "text#{i+1}", placeholder: 'よく使う項目'
+            .button
+              .submit
+                = f.button "追加", type: 'button', class: "list_add#{i+1}"
+            .select_box
+              = f.collection_select :list_id, list, :id, :name, {}, {class: "select#{i+1}"}
+            .button
+              .submit
+                = f.button "削除", type: 'button', class: "list_delete#{i+1}"
+    .board__return
+      = link_to "トップページに戻る", root_path, class: "return user#{current_user.id}"
+  .right
+    .pen
+      = image_tag "ink_pen.png", size: "250x250"
+    .hanko
+      = image_tag "hanko.png", size: "170x170"

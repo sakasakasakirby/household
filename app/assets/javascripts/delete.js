@@ -84,7 +84,6 @@ $(function() {
     //決定ボタン押された際の処理
     $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__form__delete-y`, function(e){
       e.preventDefault();
-      console.log(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)));
       decisionProcess(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)));
     })
   }
