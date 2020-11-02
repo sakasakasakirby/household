@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
+@import url('https://fonts.googleapis.com/css?family=Sawarabi+Gothic');
+
+.listPage {
+  height: 100vh;
+  width: 100vw;
+  font-family: 'Noto Serif JP', sans-serif;
+  background-image: url(wood-texture_00007.jpg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .left {
+    .book {
+      margin: -450px 0px 0px -200px;
+    }
+  }
+
+  .board {
+    min-width: 600px;
+    height: 710px;
+    width: 600px;
+    background-image: url(clipboard_red2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-left: 100px;
+    &__title {
+      font-size: 30px;
+      margin: 100px 55px 70px 55px;
+    }
+    &__list {
+      font-size: 23px;
+      padding: 0px 70px;
+      &__form {
+        display: flex;
+        flex-direction: column;
+        .formArea {
+          margin-bottom: 10px;
+          display: flex;
+          .select_box, .text_box {
+            font-size: 20px;
+            margin: 3px 0px 0px 10px;
+            .select1, .select2, .select3 {
+              width: 100px;
+            }
+            .text1, .text2, .text3 {
+              width: 130px;
+            }
+          }
+          .button {
+            margin: -9px 0px 0px 5px;
+            .submit {
+              .list_delete1, .list_delete2, .list_delete3, .list_add1, .list_add2, .list_add3 {
+                width: 40px;
+                height: 40px;
+                border:double;
+                border-color:#dd0000;
+                border-radius: 50%;
+                background: transparent;
+                font-size: 12px;
+                font-family: 'Sawarabi Gothic', sans-serif;
+                color: #dd0000;
+                white-space: pre-line;
+                word-break: break-all;
+                transform: rotate(-5deg);
+              }
+              .list_add1, .list_add2, .list_add3 {
+                margin-right: 30px;
+                transform: rotate(5deg);
+              }
+            }
+          }
+        }
+      }
+    }
+    &__return {
+      padding: 160px 0px 0px 240px;
+      .return {
+        width: 225px;
+        height: 40px;
+        font-size: 25px;
+        color: black;
+        text-decoration: none;
+        background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #333333 100%);
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .pen {
+      margin: -320px 0px 0px -50px;
+    }
+    .hanko {
+      margin: -200px 0px 0px -50px;
+    }
+  }
+}

@@ -21,6 +21,17 @@ class BooksController < ApplicationController
     end
   end
 
+  def select_box
+    @lists = List.where(user_id: current_user.id).where(item_id: params[:item_id])
+    @array = []
+    @lists.each do |list|
+      @array.push(list[:name])
+    end
+    respond_to do |format|
+      format.json
+    end
+  end
+
   def destroy
     delete_record(params[:array], params[:id], params[:item_id])
     if @deleted_book

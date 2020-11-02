@@ -38,7 +38,8 @@ body {
   justify-content: center;
 
   .container {
-    min-width: 850px;
+    //min-width: 850px;
+    min-width: 990px;
     margin: 5px 20px 0px 20px;
     width: calc(100vw - 450px);
     //height: 600px;
@@ -73,7 +74,8 @@ body {
       justify-content: center;
       align-content: center;
       &__item {
-        min-width: 92px;
+        //min-width: 92px;
+        min-width: 111px;
         display: inline-block;
         width: calc((100vw - 663px)/7);
         height: 20px;
@@ -92,7 +94,8 @@ body {
         margin: 10px 0px 0px 0px;
       }
       .active {
-        min-width: 140px;
+        //min-width: 140px;
+        min-width: 165.7px;
         width: calc((100vw - 280px) / 7);
         height: 27px;
         font-size: 25px;
@@ -117,13 +120,15 @@ body {
     .contents {
       list-style: none;
       background-color:rgba(255,255,255,0.5);
+      border-radius: 0px 0px 5px 5px;
       &__content {
-        min-height: 450px;
+        min-height: 430px;
         padding: 5px 5px 5px 5px;
         display: none;
         &__text1, &__text2, &__text3, &__text4, &__text5, &__text6, &__text7 {
           min-height: 350px;
-          height: calc(100vh - 380px);
+          height: calc(789px - 400px);
+          //height: calc(100vh - 380px);
           overflow: scroll;
           font-size: 20px;
           padding: 30px 30px 10px 50px;
@@ -208,10 +213,12 @@ body {
           }
         }
         &__add1, &__add2, &__add3, &__add4, &__add5 {
-          font-size: 20px;
-          margin: 20px 0px 0px 0px;
+          //font-size: 20px;
+          font-size: 18px;
+          padding-top: 20px;
           text-align: right;
-          min-width: 800px;
+          //min-width: 800px;
+          min-width: 980px;
           display: flex;
           justify-content: flex-end;
           &__button, &__update, &__delete {
@@ -225,16 +232,58 @@ body {
           }
           &__form {
             margin: -3px 0px -3px 0px;
+            .flex {
+              display: flex;
+            }
+            &__list_context {
+              width: 57px;
+              border-radius: 3px;
+              margin: 0px 5px 0px 0px;
+            }
+            &__add_list {
+              font-size: 18px;
+              color: black;
+              text-decoration: none;
+              border: medium solid black;
+              border-radius: 10px 10px 10px 10px;
+              background-color: #dddddd;
+              padding: 0px 5px;
+              margin-right: 90px;
+            }
             &__calendar {
+              //width: 183px;
+              width: 167px;
               border-radius: 3px;
               margin: 0px 10px 0px 0px;
             }
             &__context {
+              //width: 120px;
               border-radius: 3px;
               margin: 0px 10px 0px 0px;
             }
-            &__money {
+            &__select {
+              height: 34px;
+              width: 100px;
               border-radius: 3px;
+              margin: 0px 10px 0px 0px;
+              position:relative;
+            }
+            &__select-frequency {
+              font-size: 20px;
+              color: black;
+              text-decoration: none;
+              border: thin solid black;
+              border-radius: 5px;
+              background-color: #dddddd;
+              padding: 3px 5px;
+              margin: 0px 10px 0px -8px;
+            }
+            &__money {
+              width: 75px;
+              border-radius: 3px;
+            }
+            &__money::placeholder {
+              text-align: right;
             }
             &__button-y, &__button-n, &__update-y, &__update-n, &__delete-y, &__delete-n {
               color: black;
@@ -296,10 +345,10 @@ body {
             border-radius: 10px 10px 10px 10px;
             background-color: #dddddd;
             padding: 5px 5px;
-            margin: 8px 10px 0px 10px;
-          }
-          #logout {
             margin: 8px 10px 0px -5px;
+          }
+          #edit_list {
+            margin: 8px 10px 0px 10px;
           }
         }
         &__context {
