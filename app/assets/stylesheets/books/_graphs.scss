@@ -3,14 +3,14 @@
 .display {
   height: calc(100vh-140px);
   width: 100vw;
-  background-image: url(wood-texture_00007.jpg);
+  background-image: image-url("wood-texture_00007.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
   .graph {
     width: 1190px;
     &__back {
-      background-image: url(clipboard_red1.png);
+      background-image: image-url("clipboard_red1.png");
       background-repeat: no-repeat;
       background-size: contain;
       &__line {

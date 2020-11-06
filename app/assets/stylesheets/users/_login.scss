@@ -5,7 +5,7 @@
   height: 100vh;
   width: 100vw;
   font-family: 'Noto Serif JP', sans-serif;
-  background-image: url(wood-texture_00007.jpg);
+  background-image: image-url("wood-texture_00007.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
     min-width: 600px;
     height: 710px;
     width: 600px;
-    background-image: url(clipboard_red2.png);
+    background-image: image-url("clipboard_red2.png");
     background-repeat: no-repeat;
     background-size: contain;
     margin-left: 100px;
