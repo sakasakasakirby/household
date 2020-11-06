@@ -65,3 +65,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'fog-aws'
 gem 'font-awesome-sass'
+
+group :production do
+  gem 'rails_12factor'
+end
