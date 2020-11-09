@@ -12,9 +12,10 @@ $(function() {
     .done(function(data){
       $(`.select${num}`).append($('<option>').html(data.name).val(data.id));
       $(`.text${num}`).val("");
+      $(`.select${num}`).val(data.id);
     })
     .fail(function(){
-      alert('リスト項目の追加に失敗しました');
+      alert('項目の追加に失敗しました(項目に空白が含まれないようにしてください)');
     })
   }
 
@@ -32,7 +33,7 @@ $(function() {
       $(`select.select${num} option[value=${id}]`).remove();
     })
     .fail(function(){
-      alert('リスト項目の追加に失敗しました');
+      alert('項目の削除に失敗しました');
     })
   }
 

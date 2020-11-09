@@ -10,6 +10,7 @@ class ListsController < ApplicationController
 
   def create 
     @list = List.new(list_params)
+    name_permit()
     if @list.save
       respond_to do |format|
         format.json
@@ -30,6 +31,12 @@ class ListsController < ApplicationController
       name = nil
     end
     params.permit(:item_id).merge(name: name, user_id: current_user.id)
+  end
+
+  def name_permit
+    if (params[:name] == "" || params[:name].include?(" ") || params[:name].include?("　"))
+      @book[:name] = nil
+    end
   end
 
 end

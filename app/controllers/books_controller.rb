@@ -84,7 +84,7 @@ class BooksController < ApplicationController
   end
 
   def money_permit
-    if (@book[:money] == 0)
+    if (@book[:money] == 0 || @book[:money] >= 100000000)
       @book[:money] = nil
     end
   end

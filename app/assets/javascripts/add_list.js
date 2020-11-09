@@ -14,7 +14,7 @@ $(function() {
       $(`.contents__content__add${num}__form__list_context`).val("");
     })
     .fail(function(){
-      alert('リスト項目の追加に失敗しました');
+      alert('項目の追加に失敗しました(項目に空白が含まれないようにしてください)');
     })
   }
 

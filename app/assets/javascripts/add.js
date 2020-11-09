@@ -107,17 +107,21 @@ $(function() {
       dataType: 'json'
     })
     .done(function(data){
-      interruptProcess(num);
-      let get_date = data.date.substr(0, data.date.length-3);
-      if(date === get_date){
-        addHTML(data);
-        changeIncomeHTML(data.total, data.item_id);
+      if(data.money == null){
+        alert('金額は1~99,999,999の範囲で入力してください');
+      } else {
+        interruptProcess(num);
+        let get_date = data.date.substr(0, data.date.length-3);
+        if(date === get_date){
+          addHTML(data);
+          changeIncomeHTML(data.total, data.item_id);
+        }
+        addTotalHTML(data.total_array);
+        addUserInfoHTML(data.total_array, data.target);
       }
-      addTotalHTML(data.total_array);
-      addUserInfoHTML(data.total_array, data.target);
     })
     .fail(function(){
-      alert('登録に失敗しました');
+      alert('追加したい項目もしくは金額を正しく入力してください');
     })
   }
 

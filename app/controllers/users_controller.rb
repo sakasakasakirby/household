@@ -10,11 +10,13 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       if current_user.target < 0
-        @message = "目標金額がマイナスになっています"
+        message = "目標金額に負の値が入力されています。正の値を入力してください。"
+      elsif params[:user][:name] == "" || params[:user][:email] == ""
+        message = "NameもしくはEmailが入力されていません。変更したいものを入力してください。"
       else
-        @message = "既に使用されています！"
+        message = "入力されたName、もしくはEmailは既に使用されています。異なるものを入力してください。"
       end
-      render :edit
+      redirect_to edit_user_path(current_user), flash: {error: message}
     end
   end
 

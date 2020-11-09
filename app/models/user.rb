@@ -4,7 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+  has_many :books
+  has_many :lists
+  
   validates :name, presence: true, uniqueness: true
   validates :target, :numericality => {:greater_than_or_equal_to => 0}
-  has_many :books
 end

@@ -8,6 +8,11 @@ body {
   background-image: image-url("wood-texture_00007.jpg");
 }
 
+button, input[type="submit"] {
+  outline: none;
+  cursor : pointer;
+}
+
 .header {
   height: 140px;
   background-color:rgba(255,255,255,0.2);
@@ -308,19 +313,20 @@ body {
 
   .user-management {
     width: 330px;
+    height: 538px;
     margin: 0px 20px 0px 20px;
     
     &__display {
       min-height: 520px;
       min-width: 330px;
-      height: calc(100vh - 251px);
+      //height: calc(100vh - 251px);
       border-radius: 5px;
       padding: 5px;
       margin: 50px 0px 0px 0px;
       background-color:rgba(255,255,255,0.5);
       &__info {
         min-height: 520px;
-        height: calc(100vh - 251px);
+        //height: calc(100vh - 251px);
         border-radius: 5px;
         background-color:#eeeeee;
         &__title {
