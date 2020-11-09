@@ -12,7 +12,8 @@
     = form_with url: "#", class: "select", local: true do |f|
       = f.select :select_year, [], {}, {class: 'select__year'}
       = f.select :select_month, [["1月", 1],["2月", 2],["3月", 3],["4月", 4],["5月", 5],["6月", 6],["7月", 7],["8月", 8],["9月", 9],["10月", 10],["11月", 11],["12月", 12]], {}, {class: 'select__month'}
-      = link_to "収支グラフ", book_path(@user_id), class: "graph-button"
+      - if @total[0].length != 0
+        = link_to "収支グラフ", book_path(@user_id), class: "graph-button"
 
     %ul.container__menu
       %li= link_to "生活費", "#", class: "container__menu__item active"
