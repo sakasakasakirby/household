@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Item.create!(
+  item: '生活費',
+)
+Item.create!(
+  item: 'その他',
+)
+Item.create!(
+  item: '光熱費など',
+)
+Item.create!(
+  item: '家賃',
+)
+Item.create!(
+  item: '収入',
+)
