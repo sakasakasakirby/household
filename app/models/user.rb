@@ -7,6 +7,6 @@ class User < ApplicationRecord
   has_many :books
   has_many :lists
   
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true, length: { maximum: 10 }
   validates :target, :numericality => {:greater_than_or_equal_to => 0,  :less_than => 1000000000}
 end
