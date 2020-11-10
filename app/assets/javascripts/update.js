@@ -83,7 +83,7 @@ $(function() {
     })
     .done(function(data){
       if(data.target == null){
-        alert('項目名もしくは金額が正しくありません(金額は1~99,999,999の範囲内でお願いします)');
+        alert('項目名もしくは金額が正しくありません(金額は1~99,999,999の範囲で入力してください)');
       } else {
         checked_array = getCheckedUpdate(num, "update");
         for(i = 0; i < checked_array.length; i++){
@@ -97,7 +97,7 @@ $(function() {
       }
     })
     .fail(function(){
-      alert('値の更新に失敗しました');
+      alert('編集したい項目を選択、変更してください');
     })
   }
 

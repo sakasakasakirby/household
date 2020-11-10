@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     if current_user.update(user_params)
       redirect_to root_path
     else
-      if current_user.target < 0
-        message = "目標金額に負の値が入力されています。正の値を入力してください。"
+      if current_user.target < 0 || current_user.target >= 1000000000
+        message = "目標金額に負の値、もしくは1,000,000,000以上の値が入力されています。0~999,999,999の範囲で値を入力してください。"
       elsif params[:user][:name] == "" || params[:user][:email] == ""
         message = "NameもしくはEmailが入力されていません。変更したいものを入力してください。"
       else

@@ -8,5 +8,5 @@ class User < ApplicationRecord
   has_many :lists
   
   validates :name, presence: true, uniqueness: true
-  validates :target, :numericality => {:greater_than_or_equal_to => 0}
+  validates :target, :numericality => {:greater_than_or_equal_to => 0,  :less_than => 1000000000}
 end
