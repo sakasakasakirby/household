@@ -33,7 +33,7 @@
       .name, .mail, .password, .confirm {
         font-size: 20px;
         .input {
-          width: 280px;
+          width: 330px;
           border-radius: 5px 5px 5px 5px;
           margin-left: 20px;
         }
@@ -51,12 +51,12 @@
       }
       .button {
         width: 400px;
-        height: 105px;
+        height: 75px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         .message {
-          width: 200px;
+          width: 260px;
           font-size: 15px;
           color: red;
         }
@@ -80,7 +80,7 @@
       }
     }
     &__login {
-      padding: 47px 0px 0px 365px;
+      padding: 77px 0px 0px 365px;
       .link {
         width: 225px;
         height: 40px;

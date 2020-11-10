@@ -20,7 +20,7 @@
             .name
               = f.label :password
             .message
-              %i.message (英数字8文字以上)
+              %i.message (英数字6文字以上)
           .password__input
             = f.password_field :password, autocomplete: "off", class: 'input password'
         .confirm
@@ -29,7 +29,7 @@
             = f.password_field :password_confirmation, autocomplete: "off", class: 'input confirm'
         .button
           .message
-            = devise_error_messages!
+            //= devise_error_messages!
           .create
             = f.submit "作成", class: 'change'
     .board__login
