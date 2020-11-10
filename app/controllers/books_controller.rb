@@ -104,7 +104,7 @@ class BooksController < ApplicationController
       if (array[1][:"1"][1] == "" || array[1][:"1"][1].include?(" ") || array[1][:"1"][1].include?("　"))
         array[1][:"1"][1] = nil
       end
-      if (array[1][:"1"][2] == "0")
+      if (array[1][:"1"][2] == "0" || array[1][:"1"][2] == "NaN")
         array[1][:"1"][2] = nil
       end
       @before_book = Book.where(user_id: user_id).where(item_id: item_id).where("date LIKE ?", "%#{array[1][:"0"][0]}%").where(name: array[1][:"0"][1]).where(money: array[1][:"0"][2])

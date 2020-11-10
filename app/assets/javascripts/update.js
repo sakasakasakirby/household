@@ -82,15 +82,19 @@ $(function() {
       dataType: 'json'
     })
     .done(function(data){
-      checked_array = getCheckedUpdate(num, "update");
-      for(i = 0; i < checked_array.length; i++){
-        updateHTML(num, checked_array[i], data.update_array[i]);
+      if(data.target == null){
+        alert('項目名もしくは金額が正しくありません(金額は1~99,999,999の範囲内でお願いします)');
+      } else {
+        checked_array = getCheckedUpdate(num, "update");
+        for(i = 0; i < checked_array.length; i++){
+          updateHTML(num, checked_array[i], data.update_array[i]);
+        }
+        interruptProcessUpdateDelete(num, "update")
+        addTabTotalHTML(data.total, num);
+        changeIncomeHTML(data.total, num);
+        addTotalHTML(data.total_array);
+        addUserInfoHTML(data.total_array, data.target);
       }
-      interruptProcessUpdateDelete(num, "update")
-      addTabTotalHTML(data.total, num);
-      changeIncomeHTML(data.total, num);
-      addTotalHTML(data.total_array);
-      addUserInfoHTML(data.total_array, data.target);
     })
     .fail(function(){
       alert('値の更新に失敗しました');
