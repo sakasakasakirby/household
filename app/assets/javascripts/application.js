@@ -63,11 +63,11 @@ function addHTML(data){
     day = day.slice(1, 2);
   }
   let date = month + "/" + day;
-  if(data.item_id == 1 || data.item_id == 2){
+  //if(data.item_id == 1 || data.item_id == 2){
     let html = '<div class="contents__content__text' + data.item_id + '__date__context">' + date + '</div>';
     html += '<div class="contents__content__text' + data.item_id + '__date__context contents__content__text' + data.item_id + '__date__sum"></div>';
     $('.contents__content__text' + data.item_id + '__date').append(html);
-  }
+  //}
   html = '<div class="contents__content__text' + data.item_id + '__info__context">' + data.name + '</div>';
   html += '<div class="contents__content__text' + data.item_id + '__info__context contents__content__text' + data.item_id + '__info__sum">total</div>';
   $('.contents__content__text' + data.item_id + '__info').append(html);
@@ -89,13 +89,20 @@ function addTotalHTML(array){
   $('.contents__content__text7__info').append(html);
   $('.contents__content__text7__money__context').remove();
   let total_money = 0;
+  let count_array = [];
   html = "";
   for(i = 0; i < array[1].length; i++){
     html += '<div class="contents__content__text7__money__context">' + array[1][i].toLocaleString() + '円</div>';
-    total_money += array[1][i]
+    total_money += array[1][i];
+    if(array[1][i] < 0){
+      count_array += i;
+    }
   }
   html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money.toLocaleString() + '円</div>';
   $('.contents__content__text7__money').append(html);
+  for(i = 0; i < count_array.length; i++) {
+    $('.contents__content__text7__money__context').eq(count_array[i]).addClass("minus");
+  }
 }
 //ユーザ情報の表示
 function addUserInfoHTML(double_array, target){

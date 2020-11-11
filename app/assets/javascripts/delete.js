@@ -66,7 +66,7 @@ $(function() {
       addUserInfoHTML(data.total_array, data.target);
     })
     .fail(function(){
-      alert('削除に失敗しました');
+      alert('削除する項目を選択してください');
     })
   }
 
