@@ -58,8 +58,8 @@ $(function() {
       html += '</select>';
       html += '<button type="button" id="write' + num + '" class="contents__content__add' + num + '__form__select-frequency"><i id="write' + num + '" class="fas fa-edit"></i></button>';
       $(".context" + num).html(html);
-      html = '項目:<input type="text" class="contents__content__add' + num + '__form__list_context" size="5" placeholder="項目名">';
-      html += '<button type="button" id="list' + num + '" class="contents__content__add' + num + '__form__add_list" value="リスト追加">リスト追加</button>';
+      html = '<input type="text" class="contents__content__add' + num + '__form__list_context" size="5" placeholder="よく使うリスト">';
+      html += '<button type="button" id="list' + num + '" class="contents__content__add' + num + '__form__add_list" value="リスト追加">追加</button>';
       $(".add_list" + num).html(html);
     })
     .fail(function(){
