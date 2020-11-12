@@ -1,0 +1,33 @@
+.autoRecordPage
+  .left
+    .book
+      = image_tag "book.png", size: "500x500"
+  .board
+    .board__title
+      ●自動入力の設定
+      .robot
+        = image_tag "robot.png", size: "90x90"
+    .board__auto
+      = form_with model: @autoRecord, class: "board__auto__form", local: true do |f|
+        .Item
+          = f.label :カテゴリー
+          = f.collection_select :item_id, @item, :id, :item, {}, {class: "select item"}
+        .Day
+          = f.label :日にち
+          = f.select :date, @day, {}, {class: "select day"}
+        .Name
+          = f.label :項目名
+          = f.text_field :name, class: 'input name', placeholder: '自動入力する項目名'
+        .Money
+          = f.label :金額
+          = f.text_field :money, class: 'input money', placeholder: '1000'
+        .button
+          .submit
+            = f.submit "登録", class: 'change'
+    .board__return
+      = link_to "トップページに戻る", root_path, class: "return user#{current_user.id}"
+  .right
+    .pen
+      = image_tag "ink_pen.png", size: "250x250"
+    .hanko
+      = image_tag "hanko.png", size: "170x170"

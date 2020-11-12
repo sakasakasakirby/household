@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   }
   resources :users, only: [:edit, :update]
   resources :lists, only: [:new, :create, :destroy]
+  resources :auto_records, only: [:new, :create, :destroy]
   root "books#index"
   resources :books, only: [:index, :create, :show, :destroy, :update] do
     member do

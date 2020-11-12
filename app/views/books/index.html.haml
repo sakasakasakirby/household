@@ -111,6 +111,8 @@
             ユーザ情報
           = link_to new_list_path, id: "edit_list", class: "user user#{current_user.id}" do
             = icon('fas', 'tasks')
+          = link_to new_auto_record_path, id: "edit_autoRecord", class: "user user#{current_user.id}" do
+            = icon('fas', 'robot')
           = link_to edit_user_path(current_user), id: "edit", class: "user user#{current_user.id}" do
             = icon('fas', 'user-edit')
           = link_to destroy_user_session_path, method: :delete, id: "logout", class: "user user#{current_user.id}" do
