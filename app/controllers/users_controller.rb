@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email).merge(target: params[:user][:target].to_i)
+    params.require(:user).permit(:name, :email).merge(target: params[:user][:target])
   end
   
 end

@@ -1,0 +1,2 @@
+module AutoRecordsHelper
+end
