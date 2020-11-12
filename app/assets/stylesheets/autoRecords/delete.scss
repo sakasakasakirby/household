@@ -1,7 +1,23 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
 @import url('https://fonts.googleapis.com/css?family=Sawarabi+Gothic');
 
-.autoRecordPage {
+table {
+  background-color: #f3f3f3;
+  border: thin;
+  font-family: 'Sawarabi Gothic', sans-serif;
+}
+th {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0px 5px;
+  border: solid 1px;  
+}
+td {
+  padding: 0px 5px;
+  border: solid 1px;
+}
+
+.autoRecordDeletePage {
   height: 100vh;
   width: 100vw;
   font-family: 'Noto Serif JP', sans-serif;
@@ -35,35 +51,14 @@
       }
     }
     &__auto {
-      padding: 0px 70px;
-      .Item, .Day, .Name, .Money {
-        font-size: 24px;
-        margin-bottom: 3px;
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        .input {
-          width: 220px;
-          border-radius: 5px 5px 5px 5px;
-        }
-        .select {
-          width: 150px;
-          border-radius: 5px 5px 5px 5px;
-        }
-        .item {
-          margin-left: 20px;
-        }
-        .day {
-          width: 70px;
-          margin-left: 67px;
-        }
-        .name {
-          margin-left: 67px;
-        }
-        .money {
-          margin-left: 91px;
-        }
-        .money::placeholder {
+      height: 240px;
+      padding: 0px 50px;
+      .message {
+        font-size: 30px;
+        padding-left: 80px;
+      }
+      .table {
+        .num {
           text-align: right;
         }
       }
@@ -91,8 +86,8 @@
       padding: 140px 0px 0px 80px;
       display: flex;
       justify-content: start;
-      &__return, &__delete {
-        .return, .delete {
+      &__return, &__create {
+        .return, .create {
           width: 225px;
           height: 40px;
           font-size: 25px;
@@ -100,7 +95,7 @@
           text-decoration: none;
           background-image: linear-gradient(180deg, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0) 98%, #333333 100%);
         }
-        .delete {
+        .create {
           margin-right: 50px;
         }
       }
