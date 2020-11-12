@@ -1,0 +1,43 @@
+.autoRecordDeletePage
+  .left
+    .book
+      = image_tag "book.png", size: "500x500"
+  .board
+    .board__title
+      ●自動入力の設定
+      .robot
+        = image_tag "hammer.png", size: "90x90"
+    .board__auto
+      -if @autoRecord.length != 0
+        = form_with url: auto_record_path, method: "DELETE", class: "board__auto__form", local: true do |f|
+          .table
+            %table
+              %tbody
+                %th
+                %th カテゴリー
+                %th 日にち
+                %th 項目名
+                %th 金額
+                - @autoRecord.each do |record|
+                  %tr
+                    %td= check_box_tag :"#{record.id}"
+                    %td= record.item.item
+                    %td.num= "#{record.date}日"
+                    %td= record.name
+                    %td.num= "#{record.money.to_s(:delimited)}円"
+          .button
+            .submit
+              = f.submit "削除", class: 'change'
+      -else
+        .message
+          登録されていません
+    .board__links
+      .board__links__create
+        = link_to "登録画面へ", new_auto_record_path, class: "create"
+      .board__links__return
+        = link_to "トップページに戻る", root_path, class: "return user#{current_user.id}"
+  .right
+    .pen
+      = image_tag "ink_pen.png", size: "250x250"
+    .hanko
+      = image_tag "hanko.png", size: "170x170"

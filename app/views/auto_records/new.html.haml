@@ -24,8 +24,11 @@
         .button
           .submit
             = f.submit "登録", class: 'change'
-    .board__return
-      = link_to "トップページに戻る", root_path, class: "return user#{current_user.id}"
+    .board__links
+      .board__links__delete
+        = link_to "削除画面へ", auto_record_path(current_user), class: "delete"
+      .board__links__return
+        = link_to "トップページに戻る", root_path, class: "return user#{current_user.id}"
   .right
     .pen
       = image_tag "ink_pen.png", size: "250x250"
