@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers:{
     registrations: "users/registrations"
   }
-  resources :users, only: [:edit, :update]
+  resources :users, only: [:edit, :update, :show]
   resources :lists, only: [:new, :create, :destroy]
-  resources :auto_records, only: [:new, :create, :show, :destroy]
+  resources :auto_records, only: [:new, :create, :destroy]
   root "books#index"
   resources :books, only: [:index, :create, :show, :destroy, :update] do
     member do

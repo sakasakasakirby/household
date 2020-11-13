@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_024248) do
+ActiveRecord::Schema.define(version: 2020_11_13_045056) do
 
   create_table "auto_records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", default: "", null: false
     t.integer "money", null: false
     t.string "date", default: "", null: false
     t.bigint "item_id"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name", null: false
     t.index ["item_id"], name: "index_auto_records_on_item_id"
     t.index ["user_id"], name: "index_auto_records_on_user_id"
   end

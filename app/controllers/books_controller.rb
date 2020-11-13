@@ -57,6 +57,7 @@ class BooksController < ApplicationController
   end
 
   def show
+    check_path_id()
     @total = get_total_graph(params[:id])
     if @total.length != 0
       @average = get_average_graph(@total)
@@ -75,6 +76,15 @@ class BooksController < ApplicationController
 
   def book_params
     params.permit(:name, :money, :date, :item_id).merge(user_id: current_user.id)
+  end
+
+  def check_path_id
+    id = params[:id]
+    if id.to_i == current_user.id
+      @name = current_user.name
+    else
+      redirect_to root_path
+    end
   end
 
   def name_permit

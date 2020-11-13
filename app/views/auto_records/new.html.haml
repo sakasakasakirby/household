@@ -1,4 +1,4 @@
-= @page_title = '自動入力'
+- @page_title = '自動入力'
 
 .autoRecordPage
   .left
@@ -28,7 +28,7 @@
             = f.submit "登録", class: 'change'
     .board__links
       .board__links__delete
-        = link_to "削除画面へ", auto_record_path(current_user), class: "delete"
+        = link_to "削除画面へ", user_path(current_user), class: "delete"
       .board__links__return
         = link_to "トップページに戻る", root_path, class: "return user#{current_user.id}"
   .right

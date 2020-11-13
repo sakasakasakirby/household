@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def edit
-    @name = current_user.name
+    check_path_id()
   end
 
   def update
@@ -27,11 +27,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    check_path_id()
+    @autoRecord = current_user.auto_records
+  end
+
   
   private
 
   def user_params
     params.require(:user).permit(:name, :email).merge(target: params[:user][:target])
+  end
+
+  def check_path_id
+    id = params[:id]
+    if id.to_i == current_user.id
+      @name = current_user.name
+    else
+      redirect_to root_path
+    end
   end
   
 end

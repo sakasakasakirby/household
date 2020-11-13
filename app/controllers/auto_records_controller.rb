@@ -9,19 +9,15 @@ class AutoRecordsController < ApplicationController
     @autoRecord = AutoRecord.new(autoRecord_params)
     name_permit()
     if @autoRecord.save
-      redirect_to auto_record_path(current_user)
+      redirect_to user_path(current_user)
     else
       if @autoRecord[:name] == nil
         flash.now[:alert] = "項目名に空白が含まれています。空白を除いて入力してください。"
-      elsif @autoRecord[:money] <= 0 || @autoRecord[:money] >= 100000000
+      elsif @autoRecord[:money] == nil || @autoRecord[:money] <= 0 || @autoRecord[:money] >= 100000000
         flash.now[:alert] = "金額に数値以外、もしくは0以下1,000,000,000以上の値が入力されています。1~999,999,999の範囲の整数値を入力してください。"
       end
       render :new
     end
-  end
-
-  def show
-    @autoRecord = current_user.auto_records
   end
 
   def destroy
@@ -36,11 +32,10 @@ class AutoRecordsController < ApplicationController
       check_id.each do |i|
         AutoRecord.find(i).destroy
       end
-      redirect_to auto_record_path(current_user)
     else
       @autoRecord = current_user.auto_records
-      render :show
     end
+    redirect_to user_path(current_user)
   end
   
 
