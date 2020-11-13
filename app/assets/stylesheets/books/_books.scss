@@ -13,6 +13,10 @@ button, input[type="submit"] {
   cursor : pointer;
 }
 
+// a:hover, input[type="submit"]:hover, button:hover {
+//   opacity: 0.8;
+// }
+
 .header {
   height: 140px;
   background-color:rgba(255,255,255,0.2);
@@ -283,6 +287,28 @@ button, input[type="submit"] {
               background-color: #dddddd;
               padding: 3px 5px;
               margin: 0px 10px 0px -8px;
+              position: relative;
+              .description {
+                font-size: 12px;
+                color: #ffffff;
+                background-color: #000000;
+                border-radius: 5px;
+                padding: 10px;
+                display: none;
+                position: absolute;
+              }
+              .des_write {
+                width: 55px;
+                left: -23px;
+              }
+              .des_select {
+                width: 125px;
+                left: -55px;
+              }
+            }
+            &__select-frequency:hover .description {
+              display: inline-block;
+              top: -45px;
             }
             &__money {
               width: 75px;
@@ -353,6 +379,36 @@ button, input[type="submit"] {
             background-color: #dddddd;
             padding: 5px 5px;
             margin: 8px 10px 0px -5px;
+            position: relative;
+          }
+          .description {
+            font-size: 12px;
+            color: #ffffff;
+            background-color: #000000;
+            border-radius: 5px;
+            padding: 10px;
+            display: none;
+            position: absolute;
+          }
+          .des1 {
+            width: 145px;
+            left: -70px;
+          }
+          .des2 {
+            width: 85px;
+            left: -40px;
+          }
+          .des3 {
+            width: 135px;
+            left: -65px;
+          }
+          .des4 {
+            width: 60px;
+            left: -28px;
+          }
+          .user:hover .description {
+            display: inline-block;
+            top: -40px;
           }
           #edit_list {
             margin: 8px 10px 0px 10px;

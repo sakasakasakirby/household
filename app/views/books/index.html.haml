@@ -111,12 +111,20 @@
             ユーザ情報
           = link_to new_list_path, id: "edit_list", class: "user user#{current_user.id}" do
             = icon('fas', 'tasks')
+            .description.des1
+              よく使う項目リストの設定
           = link_to new_auto_record_path, id: "edit_autoRecord", class: "user user#{current_user.id}" do
             = icon('fas', 'robot')
+            .description.des2
+              自動入力の設定
           = link_to edit_user_path(current_user), id: "edit", class: "user user#{current_user.id}" do
             = icon('fas', 'user-edit')
+            .description.des3
+              ユーザアカウントの編集
           = link_to destroy_user_session_path, method: :delete, id: "logout", class: "user user#{current_user.id}" do
             = icon('fas', 'sign-out-alt')
+            .description.des4
+              ログアウト
         .user-management__display__info__context
           .user-management__display__info__context__left
             .user-management__display__info__context__left__name

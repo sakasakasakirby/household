@@ -16,7 +16,7 @@ $(function() {
       html += '内容:<input type="text" class="contents__content__add' + num + '__form__context" size="13" value="給料" placeholder=" 追加したい項目">';
     } else {
       html += '内容:<input type="text" class="contents__content__add' + num + '__form__context" size="13" placeholder=" 追加したい項目">';
-      html += '<button type="button" id="select' + num + '" class="contents__content__add' + num + '__form__select-frequency" value="リスト"><i id="select' + num + '" class="fas fa-list-ul"></i></button>';
+      html += '<button type="button" id="select' + num + '" class="contents__content__add' + num + '__form__select-frequency" value="リスト"><i id="select' + num + '" class="fas fa-list-ul"></i><div class="description des_select">よく使う項目の選択へ</div></button>';
     }
     html += '</span>';
     html += '金額:<input type="text" class="contents__content__add' + num + '__form__money" size="6" placeholder="1000">';
@@ -56,7 +56,7 @@ $(function() {
         }
       }
       html += '</select>';
-      html += '<button type="button" id="write' + num + '" class="contents__content__add' + num + '__form__select-frequency"><i id="write' + num + '" class="fas fa-edit"></i></button>';
+      html += '<button type="button" id="write' + num + '" class="contents__content__add' + num + '__form__select-frequency"><i id="write' + num + '" class="fas fa-edit"></i><div class="description des_write">手入力へ</div></button>';
       $(".context" + num).html(html);
       html = '<input type="text" class="contents__content__add' + num + '__form__list_context" size="5" placeholder="よく使うリスト">';
       html += '<button type="button" id="list' + num + '" class="contents__content__add' + num + '__form__add_list" value="リスト追加">追加</button>';
@@ -70,7 +70,7 @@ $(function() {
   //セレクトボックスをテキストボックスへ変更
   function changeToTextBox(num){
     let html = '内容:<input type="text" class="contents__content__add' + num + '__form__context" size="13" placeholder=" 追加したい項目">';
-    html += '<button type="button" id="select' + num + '" class="contents__content__add' + num + '__form__select-frequency"><i id="select' + num + '" class="fas fa-list-ul"></i></button>';
+    html += '<button type="button" id="select' + num + '" class="contents__content__add' + num + '__form__select-frequency"><i id="select' + num + '" class="fas fa-list-ul"></i><div class="description des_select">よく使う項目の選択へ</div></button>';
     $(".context" + num).html(html);
     $(".add_list" + num).html("");
   }
