@@ -59,6 +59,8 @@ td {
         padding-left: 80px;
       }
       .table {
+        max-height: 247px;
+        overflow: scroll;
         .num {
           text-align: right;
         }

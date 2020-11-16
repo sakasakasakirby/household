@@ -115,7 +115,7 @@
             = icon('fas', 'tasks')
             .description.des1
               よく使う項目リストの設定
-          = link_to new_auto_record_path, id: "edit_autoRecord", class: "user user#{current_user.id}" do
+          = link_to user_path(current_user), id: "edit_autoRecord", class: "user user#{current_user.id}" do
             = icon('fas', 'robot')
             .description.des2
               自動入力の設定

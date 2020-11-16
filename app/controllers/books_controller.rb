@@ -66,6 +66,7 @@ class BooksController < ApplicationController
     @income = get_income_graph(params[:id])
     @expense = get_expense_graph(params[:id])
     @label = get_label_graph(params[:id])
+    array_only12()
   end
 
   def west_mountain
@@ -253,6 +254,19 @@ class BooksController < ApplicationController
       count += 1
     end
     return total_money
+  end
+
+  def array_only12()
+    if @label[0].length > 12
+      (@label[0].length - 12).times do
+        @total.shift()
+        @stack_total.shift()
+        @income.shift()
+        @expense.shift()
+        @label[0].shift()
+        @label[1].shift()
+      end
+    end
   end
 
 end
