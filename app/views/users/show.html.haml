@@ -16,16 +16,16 @@
             %table
               %tbody
                 %th
+                %th 項目名
                 %th カテゴリー
                 %th 日にち
-                %th 項目名
                 %th 金額
                 - @autoRecord.each do |record|
                   %tr
                     %td= check_box_tag :"#{record.id}"
+                    %td= record.name
                     %td= record.item.item
                     %td.num= "#{record.date}日"
-                    %td= record.name
                     %td.num= "#{record.money.to_s(:delimited)}円"
           .button
             .submit
