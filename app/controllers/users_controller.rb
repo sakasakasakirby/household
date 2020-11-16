@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def show
     check_path_id()
-    @autoRecord = current_user.auto_records
+    @autoRecord = current_user.auto_records.order(date: "ASC")
   end
 
   
