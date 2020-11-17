@@ -19,6 +19,8 @@ class UsersController < ApplicationController
           message = "NameもしくはEmailが入力されていません。変更したいものを入力してください。"
         elsif params[:user][:name].length > 10
           message = "Nameが11文字以上で入力されています。10文字以内で入力してください。"
+        elsif params[:user][:name].length > 5
+          message = "Nameにかな, カナ, 漢字のいずれかが含まれている場合は5文字以内で入力してください。"
         else
           message = "入力されたName、もしくはEmailは既に使用されています。異なるものを入力してください。"
         end

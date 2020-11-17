@@ -64,25 +64,56 @@
           color: red;
         }
         .submit {
-          margin: 30px 0px 0px 250px;
+          margin: 15px 0px 0px 250px;
+          width: 150px;
+          height: 150px;
+          font-size: 25px;
+          font-family: 'Sawarabi Gothic', sans-serif;
+          color: #dd0000;
+          border: double;
+          border-color:#dd0000;
+          border-radius: 50%;
+          background: transparent;
+          transform: rotate(5deg);
+          //word-break: break-all;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          hr {
+            width: 96%;
+            margin: 0;
+            border-color: #f00;
+          }
           .change {
-            width: 156px;
-            height: 156px;
-            border:double;
-            border-color:#dd0000;
+            border: none;
+            background: none;
+            color: #dd0000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             background: transparent;
-            font-size: 25px;
-            font-family: 'Sawarabi Gothic', sans-serif;
-            color: #dd0000;
-            white-space: pre-line;
-            word-break: break-all;
+            padding-top: 80px;
+          }
+          .submit_topArea {
+            width: 100%;
+            padding-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .submit_top, .submit_center, hr {
+            }
           }
         }
       }
     }
     &__return {
-      padding: 60px 0px 0px 240px;
+      padding: 75px 0px 0px 240px;
       .return {
         width: 225px;
         height: 40px;
