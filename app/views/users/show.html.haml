@@ -9,8 +9,20 @@
       ●自動入力の設定
       .robot
         = image_tag "hammer.png", size: "90x90"
+    .board__description
+      .board__description__box
+        .box_blue
+      .board__description__name1
+        支出
+      .board__description__box
+        .box_yellow
+      .board__description__name2
+        収入
     .board__auto
-      -if @autoRecord.length != 0
+      -if @autoRecord.length == 0 && @autoRecord_other.length == 0 && @autoRecord_income.length == 0
+        .message
+          登録されていません
+      -else
         = form_with url: auto_record_path, method: "DELETE", class: "board__auto__form", local: true do |f|
           .table
             %table
@@ -20,19 +32,25 @@
                 %th カテゴリー
                 %th 日にち
                 %th 金額
-                - @autoRecord.each do |record|
-                  %tr
-                    %td= check_box_tag :"#{record.id}"
-                    %td= record.name
-                    %td= record.item.item
-                    %td.num= "#{record.date}日"
-                    %td.num= "#{record.money.to_s(:delimited)}円"
+                - @array.each do |autoRecord|
+                  - autoRecord.each do |record|
+                    -if record.item_id == 5
+                      %tr.table_income
+                        %td= check_box_tag :"#{record.id}"
+                        %td= record.name
+                        %td= record.item.item
+                        %td.num= "#{record.date}日"
+                        %td.num= "#{record.money.to_s(:delimited)}円"
+                    -else
+                      %tr.table_expense
+                        %td= check_box_tag :"#{record.id}"
+                        %td= record.name
+                        %td= record.item.item
+                        %td.num= "#{record.date}日"
+                        %td.num= "#{record.money.to_s(:delimited)}円"
           .button
             .submit
               = f.submit "削除", class: 'change'
-      -else
-        .message
-          登録されていません
     .board__links
       .board__links__create
         = link_to "登録画面へ", new_auto_record_path, class: "create"

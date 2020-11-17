@@ -29,7 +29,10 @@ class UsersController < ApplicationController
 
   def show
     check_path_id()
-    @autoRecord = current_user.auto_records.order(date: "ASC")
+    @autoRecord = current_user.auto_records.where.not(item_id: 2).where.not(item_id: 5).order(item_id: "ASC").order(date: "ASC")
+    @autoRecord_other = current_user.auto_records.where(item_id: 2)
+    @autoRecord_income = current_user.auto_records.where(item_id: 5)
+    @array = [@autoRecord, @autoRecord_other, @autoRecord_income]
   end
 
   
