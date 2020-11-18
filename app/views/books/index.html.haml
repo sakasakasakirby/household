@@ -10,13 +10,22 @@
         = "#{Time.now.to_s.slice(5, 2)}月の出費ランキングTOP3"
         .des_textarea1
           第一位 : 
-          = @maxMoneyRank[0][0]
+          -if @maxMoneyRank.length > 0
+            = @maxMoneyRank[0]
+          -else
+            なし
         .des_textarea2
           第二位 : 
-          = @maxMoneyRank[1][0]
+          -if @maxMoneyRank.length > 1
+            = @maxMoneyRank[1]
+          -else
+            なし
         .des_textarea3
           第三位 : 
-          = @maxMoneyRank[2][0]
+          -if @maxMoneyRank.length > 2
+            = @maxMoneyRank[2]
+          -else
+            なし
         .des_eraser
           .eraser_left
           .eraser_center
@@ -167,7 +176,7 @@
               = "#{(@target-total_money).to_s(:delimited)}円"
         .user-management__display__info__object
           .user-management__display__info__object__image
-            - if @target == 0
+            - if @target == 1
               .user-management__display__info__object__image__message
                 目標を設定しよう！
               = image_tag "/assets/family_syunyu.png", class: "image"

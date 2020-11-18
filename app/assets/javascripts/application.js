@@ -199,9 +199,18 @@ function changeIncomeHTML(tab_total, id){
 }
 //出費ランキングの更新
 function moneyRankingHTML(array){
-  $('.des_textarea1').text("第一位 : " + array[0][0]);
-  $('.des_textarea2').text("第二位 : " + array[1][0]);
-  $('.des_textarea3').text("第三位 : " + array[2][0]);
+  $('.des_textarea1').text("第一位 : なし");
+  $('.des_textarea2').text("第二位 : なし");
+  $('.des_textarea3').text("第三位 : なし");
+  if(array[0] != null){
+    $('.des_textarea1').text("第一位 : " + array[0]);
+  }
+  if(array[1] != null){
+    $('.des_textarea2').text("第二位 : " + array[1]);
+  }
+  if(array[2] != null){
+    $('.des_textarea3').text("第三位 : " + array[2]);
+  }
 }
 
 /*update.js, delete.jsで使用*/

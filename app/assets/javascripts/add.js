@@ -118,7 +118,7 @@ $(function() {
         }
         addTotalHTML(data.total_array);
         addUserInfoHTML(data.total_array, data.target);
-        moneyRankingHTML(data.ranking);
+        moneyRankingHTML(data.rank);
       }
     })
     .fail(function(){

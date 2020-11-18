@@ -64,7 +64,7 @@ $(function() {
       changeIncomeHTML(data.total, data.item_id);
       addTotalHTML(data.total_array);
       addUserInfoHTML(data.total_array, data.target);
-      moneyRankingHTML(data.ranking);
+      moneyRankingHTML(data.rank);
     })
     .fail(function(){
       alert('削除する項目を選択してください');

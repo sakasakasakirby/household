@@ -27,7 +27,7 @@ class BooksController < ApplicationController
     @lists = List.where(user_id: current_user.id).where(item_id: params[:item_id])
     @array = []
     @lists.each do |list|
-      @array.push(list[:name])
+    @array.push(list[:name])
     end
     respond_to do |format|
       format.json
@@ -121,18 +121,26 @@ class BooksController < ApplicationController
         array_money.push(book.money)
       end
     end
-    @maxMoneyRank = []
-    3.times do
+    @rankName = []
+    @rankMoney = []
+    if array_name.length > 3
+      count = 3
+    else
+      count = array_name.length
+    end
+    count.times do
       maxIndex = 0;
       (array_name.length-1).times do |i|
         if array_money[i+1] > array_money[maxIndex]
           maxIndex = i + 1
         end
       end
-      @maxMoneyRank.push([array_name[maxIndex], array_money[maxIndex]])
+      @rankName.push(array_name[maxIndex])
+      @rankMoney.push(array_money[maxIndex])
       array_name.delete_at(maxIndex)
       array_money.delete_at(maxIndex)
     end
+    @maxMoneyRank = @rankName
   end
 
   def delete_record(params_array, user_id, item_id)
