@@ -197,6 +197,12 @@ function changeIncomeHTML(tab_total, id){
   let income_str = income.toLocaleString() + "円";
   $('.contents__content__text6__money__context').eq(5).text(income_str);
 }
+//出費ランキングの更新
+function moneyRankingHTML(array){
+  $('.des_textarea1').text("第一位 : " + array[0][0]);
+  $('.des_textarea2').text("第二位 : " + array[1][0]);
+  $('.des_textarea3').text("第三位 : " + array[2][0]);
+}
 
 /*update.js, delete.jsで使用*/
 //更新、削除ボタンが押された際のフォームの作成

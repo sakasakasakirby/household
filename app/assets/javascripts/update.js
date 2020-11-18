@@ -94,6 +94,7 @@ $(function() {
         changeIncomeHTML(data.total, num);
         addTotalHTML(data.total_array);
         addUserInfoHTML(data.total_array, data.target);
+        moneyRankingHTML(data.ranking);
       }
     })
     .fail(function(){

@@ -17,6 +17,7 @@ class User < ApplicationRecord
     name.length.times do |i|
       if (name[i] =~ /\A[ぁ-んァ-ン一-龥]/) == 0
         maxLength = 5
+        break
       end
     end
     if name.length > maxLength

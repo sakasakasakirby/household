@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     @item_num = Item.select("id")
     @total = get_total(current_user.id)
     @target = User.find(current_user.id).target
+    money_ranking()
   end
 
   def create
@@ -15,6 +16,7 @@ class BooksController < ApplicationController
       @income = income_create(params[:user_id], params[:item_id])
       @total = get_total(params[:user_id])
       @target = current_user.target
+      money_ranking()
       respond_to do |format|
         format.json
       end
@@ -38,6 +40,7 @@ class BooksController < ApplicationController
       @income = income_delete(params[:id], params[:item_id])
       @total = get_total(params[:id])
       @target = current_user.target
+      money_ranking()
       respond_to do |format|
         format.json
       end
@@ -50,6 +53,7 @@ class BooksController < ApplicationController
       @income = income_update(params[:id], params[:item_id])
       @total = get_total(params[:id])
       @target = current_user.target
+      money_ranking()
       respond_to do |format|
         format.json
       end
@@ -97,6 +101,37 @@ class BooksController < ApplicationController
   def money_permit
     if (@book[:money] == 0 || @book[:money] >= 100000000)
       @book[:money] = nil
+    end
+  end
+
+  def money_ranking
+    books = current_user.books.where.not(item_id: 4).where.not(item_id: 5).where("date LIKE ?", "%#{Time.now.to_s.slice(0, 7)}%")
+    array_name = []
+    array_money = []
+    books.each do |book|
+      tf = false
+      array_name.length.times do |i|
+        if array_name[i] == book.name
+          array_money[i] += book.money
+          tf = true
+        end
+      end
+      if !tf
+        array_name.push(book.name)
+        array_money.push(book.money)
+      end
+    end
+    @maxMoneyRank = []
+    3.times do
+      maxIndex = 0;
+      (array_name.length-1).times do |i|
+        if array_money[i+1] > array_money[maxIndex]
+          maxIndex = i + 1
+        end
+      end
+      @maxMoneyRank.push([array_name[maxIndex], array_money[maxIndex]])
+      array_name.delete_at(maxIndex)
+      array_money.delete_at(maxIndex)
     end
   end
 

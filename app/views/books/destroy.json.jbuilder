@@ -5,3 +5,4 @@ json.item_id @deleted_book.item_id
 json.total @income
 json.total_array @total
 json.target @target
+json.ranking @maxMoneyRank

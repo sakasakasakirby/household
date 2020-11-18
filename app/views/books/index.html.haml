@@ -5,9 +5,24 @@
     .left
       = link_to image_tag(src="mountain.png", size: "400x90"), west_mountain_book_path(current_user)
     .right
-      = image_tag "character.png", size: "110x110"
-      .description.des_character
-        サカリキュ
+      = image_tag "character.png", size: "110x110", class: "character"
+      .des_character
+        = "#{Time.now.to_s.slice(5, 2)}月の出費ランキングTOP3"
+        .des_textarea1
+          第一位 : 
+          = @maxMoneyRank[0][0]
+        .des_textarea2
+          第二位 : 
+          = @maxMoneyRank[1][0]
+        .des_textarea3
+          第三位 : 
+          = @maxMoneyRank[2][0]
+        .des_eraser
+          .eraser_left
+          .eraser_center
+          .eraser_right
+      .des_message
+        注意！
 
 .information
   .container

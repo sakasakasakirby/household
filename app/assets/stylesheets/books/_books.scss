@@ -40,26 +40,74 @@ button, input[type="submit"] {
     width: calc(1440px - 600px);
     display: flex;
     justify-content: space-between;
+    margin-right: -20px;
     .left {
       width: 450px;
-      padding: 30px 0px 0px 100px;
+      padding: 30px 0px 0px 30px;
     }
     .right {
       margin: 35px 40px 0px 30px;
       position: relative;
+      .character {
+        position: relative;
+        z-index: 11;
+      }
     }
     .des_character {
-      width: 75px;
+      //width: 200px;
       font-size: 15px;
       font-weight: bold;
       color: #ffffff;
-      background-color: #FF66FF;
+      background-color: #006040;
+      border-radius: 5px;
       padding: 5px;
-    }
-    .right:hover .description {
-      display: inline-block;
+      position: absolute;
       top: -27px;
-      left: -40px;  
+      left: -170px;  
+      z-index: 10;
+      .des_textarea1 {
+        font-size: 13px;
+        margin-top: 3px;
+      }
+      .des_textarea2 {
+        font-size: 12px;
+      }
+      .des_textarea3 {
+        font-size: 11px;
+      }
+    }
+    .des_eraser {
+      width: 30px;
+      height: 15px;
+      background-color: #CC9966;
+      margin-bottom: -4px;
+      margin-left: 120px;
+      display: flex;
+      .eraser_left {
+        width: 13px;
+        height: 15px;
+      }
+      .eraser_center {
+        width: 4px;
+        height: 15px;
+        background-color: black;
+      }
+    }
+    .des_message {
+      width: 30px;
+      font-size: 10px;
+      font-weight: bold;
+      color: #ffaaff;
+      border-style: solid;
+      border-width: thin;
+      border-color: #ffaaff;
+      border-radius: 20px;
+      transform: rotate(-20deg);
+      padding: 2px;
+      position: absolute;
+      top: 40px;
+      left: -10px;
+      z-index: 11;
     }
   }
 }
