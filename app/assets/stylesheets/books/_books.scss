@@ -195,7 +195,8 @@ button, input[type="submit"] {
 .information {
   min-height: 600px;
   display: flex;
-  justify-content: center;
+  justify-content: start;
+  padding-left: 20px;
 
   .container {
     //width: calc(100vw - 450px);
@@ -237,7 +238,8 @@ button, input[type="submit"] {
         //min-width: 92px;
         min-width: 111px;
         display: inline-block;
-        width: calc((100vw - 663px)/7);
+        //width: calc((100vw - 663px)/7);
+        width: calc((990px - 663px)/7);
         height: 20px;
         color: black;
         text-align: center;
@@ -256,7 +258,7 @@ button, input[type="submit"] {
       .active {
         //min-width: 140px;
         min-width: 165.7px;
-        width: calc((100vw - 280px) / 7);
+        width: calc((990px - 280px) / 7);
         height: 27px;
         font-size: 25px;
         color: black;
