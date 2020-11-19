@@ -3,7 +3,28 @@
     = link_to image_tag(src="title.png", size: "550x140"), root_path
   .header__image
     .left
-      = link_to image_tag(src="mountain.png", size: "400x90"), west_mountain_book_path(current_user)
+      .bulletin_board
+        .bulletin_board__pin_topLeft
+        .bulletin_board__pin_topRight
+        .bulletin_board__pin_bottomLeft
+        .bulletin_board__pin_bottomRight
+        .bulletin_board__context
+          .bulletin_board__context__title
+            本日のまとめ
+          .bulletin_board__context__message
+            .bulletin_board__context__message__expense
+              = "本日の支出 : #{@todayExpense.to_s(:delimited)}円"
+            .bulletin_board__context__message__income
+              = "本日の収入 : #{@todayIncome.to_s(:delimited)}円"
+            .bulletin_board__context__message__current
+              -if @currentBook != []
+                = "最新の出費 : #{@currentBook[0].name}"
+              -else
+                最新の出費 : 本日入力なし
+          .bulletin_board__context__hanko
+            = image_tag(src="hanko1.png", size: "100x100")
+          .bulletin_board__context__link
+            = link_to image_tag(src="mountain.png", size: "100x25"), west_mountain_book_path(current_user)
     .right
       = image_tag "character.png", size: "110x110", class: "character"
       .des_character

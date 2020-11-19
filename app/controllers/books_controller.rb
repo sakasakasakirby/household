@@ -6,6 +6,8 @@ class BooksController < ApplicationController
     @total = get_total(current_user.id)
     @target = User.find(current_user.id).target
     money_ranking()
+    today_info()
+    @currentBook = current_user.books.limit(1).where.not(item_id: 5).where(date: Time.now.to_s.slice(0, 10)).order('id DESC')
   end
 
   def create
@@ -141,6 +143,19 @@ class BooksController < ApplicationController
       array_money.delete_at(maxIndex)
     end
     @maxMoneyRank = @rankName
+  end
+
+  def today_info()
+    todayExpense = current_user.books.where.not(item_id: 5).where(date: Time.now.to_s.slice(0, 10))
+    @todayExpense = 0
+    todayIncome = current_user.books.where(item_id: 5).where(date: Time.now.to_s.slice(0, 10))
+    @todayIncome = 0
+    todayExpense.each do |book|
+      @todayExpense += book.money
+    end
+    todayIncome.each do |book|
+      @todayIncome += book.money
+    end
   end
 
   def delete_record(params_array, user_id, item_id)

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP');
+@import url("https://fonts.googleapis.com/earlyaccess/kokoro.css");
 
 body {
   height: 100vh;
@@ -42,14 +43,92 @@ button, input[type="submit"] {
     margin-right: -20px;
     .left {
       width: 450px;
-      padding: 30px 0px 0px 30px;
+      padding: 13px 0px 0px 50px;
+      .bulletin_board {
+        width: 400px;
+        height: 120px;
+        background-color: #f6f6f6;
+        position: relative;
+        z-index: 5;
+        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .4);
+        &__pin_topLeft, &__pin_topRight, &__pin_bottomLeft, &__pin_bottomRight {
+          width: 10px;
+          height: 10px;
+          background-color: #CCCC66;
+          border-radius: 50%;
+          position: absolute;
+          z-index: 6;
+        }
+        &__pin_topLeft {
+          top: 2px;
+          left: 2px;
+        }
+        &__pin_topRight {
+          top: 2px;
+          right: 2px;
+        }
+        &__pin_bottomLeft {
+          bottom: 2px;
+          left: 2px;
+        }
+        &__pin_bottomRight {
+          bottom: 2px;
+          right: 2px;
+        }
+        &__context {
+          width: 376px;
+          height: 96px;
+          font-family: 'Noto Serif JP', sans-serif;
+          border-style: solid;
+          border: thin;
+          border-color: black;
+          //font-family: "Kokoro";
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          &__title {
+            width: 120px;
+            font-size: 17px;
+            font-weight: bold;
+          }
+          &__message {
+            font-size: 14px;
+            position: absolute;
+            left: 10px;
+            &__expense {
+              color: red;
+            }
+            &__income {
+              color: green;
+            }
+          }
+          // &__current {
+          //   font-size: 14px;
+          //   position: absolute;
+          //   top: 26px;
+          //   left: 180px;
+          // }
+          &__link {
+            position: absolute;
+            top: -3px;
+            right: 20px;
+          }
+          &__hanko {
+            opacity: 0.2;
+            transform: rotate(-10deg);
+            position: absolute;
+            top: 0px;
+            right: 130px;
+          }
+        }
+      }
     }
     .right {
       margin: 35px 40px 0px 30px;
       position: relative;
       .character {
         position: relative;
-        z-index: 11;
+        z-index: 12;
       }
     }
     .des_character {
@@ -104,9 +183,10 @@ button, input[type="submit"] {
       transform: rotate(-20deg);
       padding: 2px;
       position: absolute;
-      top: 40px;
-      left: -10px;
+      top: 0px;
+      left: -15px;
       z-index: 11;
+      opacity: 0.8;
     }
   }
 }
@@ -118,11 +198,11 @@ button, input[type="submit"] {
   justify-content: center;
 
   .container {
-    //min-width: 850px;
-    min-width: 990px;
-    margin: 5px 20px 0px 20px;
-    width: calc(100vw - 450px);
+    //width: calc(100vw - 450px);
     //height: 600px;
+    width: 990px;
+    //min-width: 990px;
+    margin: 5px 20px 0px 20px;
     .select {
       padding: 0px 10px 10px 10px;
       &__year {
