@@ -7,7 +7,6 @@ class BooksController < ApplicationController
     @target = User.find(current_user.id).target
     money_ranking()
     today_info()
-    @currentBook = current_user.books.limit(1).where.not(item_id: 5).where(date: Time.now.to_s.slice(0, 10)).order('id DESC')
   end
 
   def create
@@ -19,6 +18,8 @@ class BooksController < ApplicationController
       @total = get_total(params[:user_id])
       @target = current_user.target
       money_ranking()
+      today_info()
+      @todayInfo = [@todayExpense, @todayIncome, @currentBook[0].name]
       respond_to do |format|
         format.json
       end
@@ -43,6 +44,12 @@ class BooksController < ApplicationController
       @total = get_total(params[:id])
       @target = current_user.target
       money_ranking()
+      today_info()
+      if @currentBook != []
+        @todayInfo = [@todayExpense, @todayIncome, @currentBook[0].name]
+      else
+        @todayInfo = [@todayExpense, @todayIncome, nil]
+      end
       respond_to do |format|
         format.json
       end
@@ -156,6 +163,7 @@ class BooksController < ApplicationController
     todayIncome.each do |book|
       @todayIncome += book.money
     end
+    @currentBook = current_user.books.limit(1).where.not(item_id: 5).where(date: Time.now.to_s.slice(0, 10)).order('id DESC')
   end
 
   def delete_record(params_array, user_id, item_id)

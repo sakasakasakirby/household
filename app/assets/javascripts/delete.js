@@ -65,6 +65,7 @@ $(function() {
       addTotalHTML(data.total_array);
       addUserInfoHTML(data.total_array, data.target);
       moneyRankingHTML(data.rank);
+      currentInfoHTML(data.today_info);
     })
     .fail(function(){
       alert('削除する項目を選択してください');

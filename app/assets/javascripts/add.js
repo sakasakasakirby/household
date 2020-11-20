@@ -108,7 +108,7 @@ $(function() {
     })
     .done(function(data){
       if(data.money == null){
-        alert('金額は1~99,999,999の範囲で入力してください');
+        alert('金額は、半角かつ1~99,999,999の範囲で入力してください');
       } else {
         interruptProcess(num);
         let get_date = data.date.substr(0, data.date.length-3);
@@ -119,6 +119,7 @@ $(function() {
         addTotalHTML(data.total_array);
         addUserInfoHTML(data.total_array, data.target);
         moneyRankingHTML(data.rank);
+        currentInfoHTML(data.today_info);
       }
     })
     .fail(function(){

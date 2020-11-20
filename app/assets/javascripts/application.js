@@ -213,6 +213,19 @@ function moneyRankingHTML(array){
   }
 }
 
+/*add.js, delete.jsで使用*/
+//本日のまとめの更新
+function currentInfoHTML(array){
+  console.log(array);
+  $('.bulletin_board__context__message__expense').text("本日の支出 : " + array[0].toLocaleString() + "円");
+  $('.bulletin_board__context__message__income').text("本日の収入 : " + array[1].toLocaleString() + "円");
+  if(array[2] != null){
+    $('.bulletin_board__context__message__current').text("最新の出費 : " + array[2]);
+  } else {
+    $('.bulletin_board__context__message__current').text("最新の出費 : 本日入力なし");
+  }
+}
+
 /*update.js, delete.jsで使用*/
 //更新、削除ボタンが押された際のフォームの作成
 function createButtonHTML(num, button){

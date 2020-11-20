@@ -6,3 +6,4 @@ json.total @income
 json.total_array @total
 json.target @target
 json.rank @maxMoneyRank
+json.today_info @todayInfo

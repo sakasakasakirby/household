@@ -15,17 +15,19 @@ class UsersController < ApplicationController
       else
         jp = check_jp()
         if current_user.target < 1 || current_user.target >= 1000000000
-          message = "目標金額に数値以外、もしくは0以下1,000,000,000以上の値が入力されています。1~999,999,999の範囲の整数値を入力してください。"
+          flash.now[:alert] = "目標金額に数値以外、もしくは0以下1,000,000,000以上の値が入力されています。1~999,999,999の範囲の整数値を入力してください。"
         elsif params[:user][:name] == "" || params[:user][:email] == ""
-          message = "NameもしくはEmailが入力されていません。変更したいものを入力してください。"
+          flash.now[:alert] = "NameもしくはEmailが入力されていません。変更したいものを入力してください。"
         elsif params[:user][:name].length > 10
-          message = "Nameが11文字以上で入力されています。10文字以内で入力してください。"
+          flash.now[:alert] = "Nameが11文字以上で入力されています。10文字以内で入力してください。"
         elsif params[:user][:name].length > 5 && jp == 1
-          message = "Nameにかな, カナ, 漢字のいずれかが含まれている場合は5文字以内で入力してください。"
+          flash.now[:alert] = "Nameにかな, カナ, 漢字のいずれかが含まれている場合は5文字以内で入力してください。"
+        elsif current_user.errors.full_messages[0] == "Targetは数値で入力してください"
+          flash.now[:alert] = "目標金額は数値で入力してください。"
         else
-          message = "入力されたName、もしくはEmailは既に使用されています。異なるものを入力してください。"
+          flash.now[:alert] = "入力されたName、もしくはEmailは既に使用されています。異なるものを入力してください。"
         end
-        redirect_to edit_user_path(current_user), flash: {error: message}
+        render :edit
       end
     end
   end
