@@ -23,8 +23,16 @@
                 最新の出費 : 本日入力なし
           .bulletin_board__context__hanko
             = image_tag(src="hanko2.png", size: "100x100")
+          .bulletin_board__context__news
           .bulletin_board__context__link
-            = link_to image_tag(src="mountain.png", size: "100x25"), west_mountain_book_path(current_user)
+            .banner1
+              = link_to image_tag(src="mountain.png", size: "100x25"), west_mountain_book_path(current_user)
+            .banner2
+              = link_to image_tag(src="yamada.png", size: "100x25"), west_mountain_book_path(current_user)
+            .banner3
+              = link_to image_tag(src="nishiyama.jpg", size: "110x25"), "http://54.65.74.240/"
+            .banner4
+              -# = link_to image_tag(src="kumon.jpeg", size: "110x25"), "http://54.65.74.240/"
     .right
       = image_tag "character.png", size: "110x110", class: "character"
       .des_character
