@@ -110,24 +110,30 @@ button, input[type="submit"] {
           // }
           &__link {
             position: absolute;
-            top: 0px;
+            top: -5px;
             right: 20px;
             .banner1 {
               position: absolute;
               top: 0px;
-              right: 5px;
-              transform: rotate(3deg);
+              right: 25px;
+              transform: rotate(-3deg);
             }
             .banner2 {
               position: absolute;
-              top: 30px;
+              top: 27px;
               right: -10px;
-              transform: rotate(0deg);
+              transform: rotate(1deg);
             }
             .banner3 {
               position: absolute;
-              top: 57px;
-              right: -8px;
+              top: 50px;
+              right: 50px;
+              transform: rotate(3deg);
+            }
+            .banner4 {
+              position: absolute;
+              top: 77px;
+              right: 10px;
               transform: rotate(-2deg);
             }
           }
@@ -136,7 +142,7 @@ button, input[type="submit"] {
             transform: rotate(10deg);
             position: absolute;
             top: 0px;
-            right: 135px;
+            right: 155px;
           }
         }
       }
