@@ -112,29 +112,54 @@ button, input[type="submit"] {
             position: absolute;
             top: -5px;
             right: 20px;
+            // .banner1 {
+            //   position: absolute;
+            //   top: 0px;
+            //   right: 25px;
+            //   transform: rotate(-3deg);
+            // }
+            // .banner2 {
+            //   position: absolute;
+            //   top: 27px;
+            //   right: -10px;
+            //   transform: rotate(1deg);
+            // }
+            // .banner3 {
+            //   position: absolute;
+            //   top: 50px;
+            //   right: 50px;
+            //   transform: rotate(3deg);
+            // }
+            // .banner4 {
+            //   position: absolute;
+            //   top: 77px;
+            //   right: 10px;
+            //   transform: rotate(-2deg);
+            // }
             .banner1 {
               position: absolute;
               top: 0px;
               right: 25px;
-              transform: rotate(-3deg);
             }
             .banner2 {
               position: absolute;
-              top: 27px;
-              right: -10px;
-              transform: rotate(1deg);
+              top: 22px;
+              right: 0px;
             }
             .banner3 {
               position: absolute;
-              top: 50px;
-              right: 50px;
-              transform: rotate(3deg);
+              top: 44px;
+              right: 25px;
             }
             .banner4 {
               position: absolute;
-              top: 77px;
-              right: 10px;
-              transform: rotate(-2deg);
+              top: 66px;
+              right: 0px;
+            }
+            .banner5 {
+              position: absolute;
+              top: 88px;
+              right: 19px;
             }
           }
           &__hanko {
