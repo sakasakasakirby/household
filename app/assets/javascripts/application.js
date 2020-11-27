@@ -95,7 +95,7 @@ function addTotalHTML(array){
     html += '<div class="contents__content__text7__money__context">' + array[1][i].toLocaleString() + '円</div>';
     total_money += array[1][i];
     if(array[1][i] < 0){
-      count_array += i;
+      count_array.push(i);
     }
   }
   html += '<div class="contents__content__text7__money__context contents__content__text7__money__sum">' + total_money.toLocaleString() + '円</div>';
@@ -216,7 +216,6 @@ function moneyRankingHTML(array){
 /*add.js, delete.jsで使用*/
 //本日のまとめの更新
 function currentInfoHTML(array){
-  console.log(array);
   $('.bulletin_board__context__message__expense').text("本日の支出 : " + array[0].toLocaleString() + "円");
   $('.bulletin_board__context__message__income').text("本日の収入 : " + array[1].toLocaleString() + "円");
   if(array[2] != null){
