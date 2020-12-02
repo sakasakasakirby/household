@@ -10,9 +10,13 @@ $(function() {
       dataType: 'json'
     })
     .done(function(data){
-      $(`.select${num}`).append($('<option>').html(data.name).val(data.id));
-      $(`.text${num}`).val("");
-      $(`.select${num}`).val(data.id);
+      if(data.id == null) {
+        alert('項目を追加できませんでした(項目名の文字数が16文字以上になっています。15文字以内にしてください)');
+      } else {
+        $(`.select${num}`).append($('<option>').html(data.name).val(data.id));
+        $(`.text${num}`).val("");
+        $(`.select${num}`).val(data.id);
+      }
     })
     .fail(function(){
       alert('項目を追加できませんでした(項目に入力があること、空白が含まれていないことを確認してください)');

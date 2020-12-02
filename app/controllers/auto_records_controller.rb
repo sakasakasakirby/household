@@ -15,6 +15,8 @@ class AutoRecordsController < ApplicationController
         flash.now[:alert] = "項目名に空白が含まれています。空白を除いて入力してください。"
       elsif @autoRecord[:money] == nil || @autoRecord[:money] <= 0 || @autoRecord[:money] >= 100000000
         flash.now[:alert] = "金額に数値以外、もしくは0以下1,000,000,000以上の値が入力されています。1~999,999,999の範囲の整数値を入力してください。"
+      else
+        flash.now[:alert] = "項目名が16文字以上なっています。15文字以内で入力してください。"
       end
       render :new
     end

@@ -102,7 +102,7 @@ class BooksController < ApplicationController
   end
 
   def name_permit
-    if (@book[:name] == "" || @book[:name].include?(" ") || @book[:name].include?("　"))
+    if (@book[:name] == "" || @book[:name].include?(" ") || @book[:name].include?("　") )
       @book[:name] = nil
     end
   end
