@@ -123,7 +123,7 @@ $(function() {
       interruptProcessUpdateDelete(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)), "update");
     })
     //決定ボタン押された際の処理
-    $(`.contents__content__add${j}`).on('click', `.contents__content__add${j}__form__update-y`, function(e){
+    $(`.contents__content__add${j}`).one('click', `.contents__content__add${j}__form__update-y`, function(e){
       e.preventDefault();
       decisionProcess(Number(e.target.className.slice(e.target.className.length-17, e.target.className.length-16)));
     })
