@@ -10,7 +10,15 @@ namespace :auto_record do
         record.date = end_of_month
       end
       if day == record.date.to_i
-        today = "#{Date.today.year}-#{Date.today.month}-#{Date.today.day}"
+        month = Date.today.month
+        days = Date.today.day
+        if Date.today.month.length == 1
+          month = "0#{Date.today.month}"
+        end
+        if Date.today.day.length == 1
+          days = "0#{Date.today.day}"
+        end
+        today = "#{Date.today.year}-#{month}-#{days}"
         Book.create(name: record.name, money: record.money, date: today, item_id: record.item_id, user_id: record.user_id)
       end
     end
